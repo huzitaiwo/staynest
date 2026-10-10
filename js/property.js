@@ -40,9 +40,9 @@
     SN.about[p.id] ||
     `${p.title} is a ${p.type.toLowerCase()} in ${p.area}, ${p.city}.`;
   const heading = `${p.title}, ${p.city}`;
-  document.title = `${heading} — StayNest`;
+  document.title = `${heading} - StayNest`;
   $('meta[name="description"]').content = about;
-  $('meta[property="og:title"]').content = `${heading} — StayNest`;
+  $('meta[property="og:title"]').content = `${heading} - StayNest`;
   $('meta[property="og:image"]').content = p.image;
 
   const cityLink = $("[data-crumb-city]");
