@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StayNest — Find a place worth staying for</title>
+    <meta
+      name="description"
+      content="A considered way to discover characterful places to stay."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="StayNest - Find a place worth staying for"
+    />
+    <meta
+      property="og:description"
+      content="A considered way to discover characterful places to stay."
+    />
+    <meta property="og:image" content="assets/images/hero.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header"></div>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__img"
+          src="assets/images/staynest-hero_646eee7e.webp"
+          alt="Sandstone house beside a still pool beneath an olive tree at dusk"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+        />
+        <div class="container hero__content">
+          <p class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>Places with a
+            point of view
+          </p>
+          <h1 id="hero-title" class="display">
+            Find a place<br class="br-desktop" />
+            worth staying for.
+          </h1>
+          <p class="lead">
+            A more thoughtful way to find the corners of the world that make a
+            trip feel like yours.
+          </p>
+
+          <form
+            class="search"
+            role="search"
+            aria-label="Search stays"
+            action="search.html"
+            novalidate
+          >
+            <div class="search__field search__field--where">
+              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+              <div class="search__control">
+                <label for="s-where">Where</label>
+                <input
+                  id="s-where"
+                  name="where"
+                  type="text"
+                  placeholder="Search destinations"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="search__field">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-calendar" />
+              </svg>
+              <div class="search__control">
+                <label for="s-in">Check in</label>
+                <input id="s-in" name="checkin" type="date" required />
+                <span class="search__ph" aria-hidden="true">Add dates</span>
+              </div>
+            </div>
+            <div class="search__field">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-calendar" />
+              </svg>
+              <div class="search__control">
+                <label for="s-out">Check out</label>
+                <input id="s-out" name="checkout" type="date" required />
+                <span class="search__ph" aria-hidden="true">Add dates</span>
+              </div>
+            </div>
+            <div class="search__field">
+              <svg class="icon" aria-hidden="true"><use href="#i-user" /></svg>
+              <div class="search__control">
+                <label for="s-guests">Guests</label>
+                <select id="s-guests" name="guests" required>
+                  <option value="" selected>Add guests</option>
+                  <option value="1">1 guest</option>
+                  <option value="2">2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                  <option value="5">5 guests</option>
+                  <option value="6">6+ guests</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn--primary search__submit" type="submit">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-search" />
+              </svg>
+              <span>Search<span class="search__more"> stays</span></span>
+            </button>
+          </form>
+
+          <a class="hero__cue" href="#edit"
+            >Begin with the edit
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-arrow-down" /></svg
+          ></a>
+        </div>
+      </section>
+
+      <!-- The StayNest edit -->
+      <section class="section" id="edit" aria-labelledby="edit-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <div class="section-head__text">
+              <p class="eyebrow">The StayNest edit</p>
+              <h2 id="edit-title" class="h2">
+                A few places we keep thinking about.
+              </h2>
+              <p class="lead">
+                Thoughtfully composed homes in places that reward an unhurried
+                look around.
+              </p>
+            </div>
+            <a class="link-arrow" href="search.html"
+              >See the full edit
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-up-right" /></svg
+            ></a>
+          </header>
+
+          <ul class="card-grid" role="list">
+            <li>
+              <article class="card reveal">
+                <div class="card__media">
+                  <img
+                    src="assets/images/staynest-villa_546be129.webp"
+                    alt="Whitewashed house with a pergola and a pool in the Alentejo countryside"
+                    width="640"
+                    height="533"
+                    loading="lazy"
+                  />
+                  <span class="tag">House</span>
+                  <button
+                    class="save"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Save Casa Alma"
+                    data-save="casa-alma"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-heart" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="card__body">
+                  <p class="card__kicker">Alentejo Coast</p>
+                  <div class="card__head">
+                    <div>
+                      <h3 class="card__title">
+                        <a class="card__link" href="property.html?id=casa-alma"
+                          >Casa Alma</a
+                        >
+                      </h3>
+                      <p class="card__loc">Comporta, Portugal</p>
+                    </div>
+                    <span class="card__go" aria-hidden="true"
+                      ><svg class="icon" aria-hidden="true">
+                        <use href="#i-arrow-up-right" /></svg
+                    ></span>
+                  </div>
+                  <div class="card__foot">
+                    <p class="card__note">
+                      Made for long lunches and late swims.
+                    </p>
+                    <p class="price">
+                      <strong>€420</strong> <span>night</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card reveal">
+                <div class="card__media">
+                  <img
+                    src="assets/images/staynest-paris_aa457a0a.webp"
+                    alt="Sunlit Paris apartment living room with a tall open window"
+                    width="640"
+                    height="533"
+                    loading="lazy"
+                  />
+                  <span class="tag">Apartment</span>
+                  <button
+                    class="save"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Save Rue Charonne Apartment"
+                    data-save="rue-charonne"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-heart" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="card__body">
+                  <p class="card__kicker">11th Arrondissement</p>
+                  <div class="card__head">
+                    <div>
+                      <h3 class="card__title">
+                        <a
+                          class="card__link"
+                          href="property.html?id=rue-charonne"
+                          >Rue Charonne Apartment</a
+                        >
+                      </h3>
+                      <p class="card__loc">Paris, France</p>
+                    </div>
+                    <span class="card__go" aria-hidden="true"
+                      ><svg class="icon" aria-hidden="true">
+                        <use href="#i-arrow-up-right" /></svg
+                    ></span>
+                  </div>
+                  <div class="card__foot">
+                    <p class="card__note">
+                      A good book, an open window, the city below.
+                    </p>
+                    <p class="price">
+                      <strong>€245</strong> <span>night</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card reveal">
+                <div class="card__media">
+                  <img
+                    src="assets/images/staynest-cape-town_7f380cf6.webp"
+                    alt="Timber house on a mountainside at golden hour above Cape Town"
+                    width="640"
+                    height="533"
+                    loading="lazy"
+                  />
+                  <span class="tag">Retreat</span>
+                  <button
+                    class="save"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Save The Slope House"
+                    data-save="slope-house"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-heart" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="card__body">
+                  <p class="card__kicker">Tamboerskloof</p>
+                  <div class="card__head">
+                    <div>
+                      <h3 class="card__title">
+                        <a
+                          class="card__link"
+                          href="property.html?id=slope-house"
+                          >The Slope House</a
+                        >
+                      </h3>
+                      <p class="card__loc">Cape Town, South Africa</p>
+                    </div>
+                    <span class="card__go" aria-hidden="true"
+                      ><svg class="icon" aria-hidden="true">
+                        <use href="#i-arrow-up-right" /></svg
+                    ></span>
+                  </div>
+                  <div class="card__foot">
+                    <p class="card__note">
+                      Mountain air, city lights, nowhere to be.
+                    </p>
+                    <p class="price">
+                      <strong>€380</strong> <span>night</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- The place index -->
+      <section
+        class="section section--sand"
+        id="places"
+        aria-labelledby="places-title"
+      >
+        <div class="container split">
+          <div class="split__intro reveal">
+            <p class="eyebrow">The place index</p>
+            <h2 id="places-title" class="h2">
+              Follow a feeling, not an itinerary.
+            </h2>
+            <p class="lead">
+              A starting point for neighborhoods, coastlines, and cities with
+              their own way of keeping time.
+            </p>
+            <p class="note">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-compass" /></svg
+              >Four emerging destination notes
+            </p>
+          </div>
+          <ol class="places" role="list">
+            <li>
+              <a class="place reveal" href="search.html?where=Lagos"
+                ><span class="place__num">01</span
+                ><span class="place__main"
+                  ><span class="place__name">Lagos</span
+                  ><span class="place__note">Atlantic-facing calm</span></span
+                ><span class="place__country">Portugal</span></a
+              >
+            </li>
+            <li>
+              <a class="place reveal" href="search.html?where=Marrakech"
+                ><span class="place__num">02</span
+                ><span class="place__main"
+                  ><span class="place__name">Marrakech</span
+                  ><span class="place__note">Courtyards and color</span></span
+                ><span class="place__country">Morocco</span></a
+              >
+            </li>
+            <li>
+              <a class="place reveal" href="search.html?where=Kyoto"
+                ><span class="place__num">03</span
+                ><span class="place__main"
+                  ><span class="place__name">Kyoto</span
+                  ><span class="place__note">A slower kind of city</span></span
+                ><span class="place__country">Japan</span></a
+              >
+            </li>
+            <li>
+              <a class="place reveal" href="search.html?where=Copenhagen"
+                ><span class="place__num">04</span
+                ><span class="place__main"
+                  ><span class="place__name">Copenhagen</span
+                  ><span class="place__note">Harbour-side ritual</span></span
+                ><span class="place__country">Denmark</span></a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- The StayNest approach -->
+      <section
+        class="section section--surface"
+        id="approach"
+        aria-labelledby="approach-title"
+      >
+        <div class="container split split--even">
+          <div class="approach-card reveal">
+            <p class="eyebrow eyebrow--light">The StayNest approach</p>
+            <h2 id="approach-title" class="h2">
+              A beautiful address is only the beginning of a good stay.
+            </h2>
+            <p class="approach-card__foot">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-sparkle" /></svg
+              >More personal, less transactional.
+            </p>
+          </div>
+          <ol class="steps" role="list">
+            <li class="step reveal">
+              <span class="step__num">01</span>
+              <div>
+                <h3 class="step__title">Find your way in</h3>
+                <p class="step__text">
+                  Starting with places that have an atmosphere, not just an
+                  address.
+                </p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <span class="step__num">02</span>
+              <div>
+                <h3 class="step__title">See the important details</h3>
+                <p class="step__text">
+                  Clear information and no hidden intent, so a good decision
+                  feels easy.
+                </p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <span class="step__num">03</span>
+              <div>
+                <h3 class="step__title">Leave room for the trip</h3>
+                <p class="step__text">
+                  The best planning gives your day a shape without filling every
+                  minute.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- For thoughtful hosts -->
+      <section class="host-band" id="host" aria-labelledby="host-title">
+        <div class="container host-band__inner">
+          <div class="reveal">
+            <p class="eyebrow eyebrow--gold">For thoughtful hosts</p>
+            <h2 id="host-title" class="h2">
+              Your place already has a story. Let's give it the right audience.
+            </h2>
+          </div>
+          <div class="host-band__side reveal">
+            <p>
+              The host experience is being designed as a clear, capable
+              workspace for the practical side of sharing a remarkable place.
+            </p>
+            <a class="btn btn--light" href="host.html"
+              >Tell us about your place
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-up-right" /></svg
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+:root {
+  /* Colour */
+  --brand: #c85b3c;
+  --brand-hover: #b04c30;
+  --brand-text: #a8452a;
+  --brand-contrast: #ffffff;
+  --bg: #f7f3ec;
+  --surface: #fcfaf6;
+  --sand: #e8dfd2;
+  --forest: #2e3b2e;
+  --night: #26221f;
+  --text: #2a2420;
+  --text-secondary: #5f554d;
+  --text-muted: #76695f;
+  --border: #ddd3c5;
+  --gold: #dca56b;
+  --on-dark: #f7f3ec;
+  --on-dark-muted: rgb(247 243 236 / 0.72);
+  --focus: #1f5fbf;
+  --success: #2f7d4f;
+  --warning: #b7791f;
+  --error: #c0392b;
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-display: clamp(2.6rem, 1.2rem + 5vw, 6rem);
+  --fs-h2: clamp(2rem, 1.2rem + 2.8vw, 3.5rem);
+  --fs-h3: 1.5rem;
+  --fs-h4: 1.25rem;
+  --fs-lg: 1.0625rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.8125rem;
+  --fs-caption: 0.6875rem;
+
+  /* Spacing */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgb(38 34 31 / 0.12);
+  --shadow-2: 0 18px 40px rgb(20 16 13 / 0.28);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 150ms;
+  --t-base: 280ms;
+  --t-slow: 700ms;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: clamp(1.25rem, 3.4vw, 2.5rem);
+  --header-h: 72px;
+}
