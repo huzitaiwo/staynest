@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Become a host — StayNest</title>
+    <meta
+      name="description"
+      content="List your place on StayNest. Create a listing in nine guided steps and meet guests who care about the details."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header"></div>
+
+    <main id="main">
+      <section class="host-band host-band--hero" aria-labelledby="host-title">
+        <div class="container host-band__inner">
+          <div>
+            <p class="eyebrow eyebrow--gold">For thoughtful hosts</p>
+            <h1 id="host-title" class="h1">
+              Your place already has a story. Let's give it the right audience.
+            </h1>
+          </div>
+          <div class="host-band__side">
+            <p>
+              Share your home with guests who care about the details. Set it up
+              in nine guided steps, and see exactly what guests will pay.
+            </p>
+            <button class="btn btn--light" type="button" data-host-cta>
+              <span>Start hosting</span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-up-right" />
+              </svg>
+            </button>
+            <p class="host-band__err" role="alert" data-host-err hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="how-title">
+        <div class="container">
+          <header class="section-head">
+            <div class="section-head__text">
+              <p class="eyebrow">How it works</p>
+              <h2 id="how-title" class="h2">A calm way to get listed.</h2>
+            </div>
+          </header>
+          <ol class="features" role="list">
+            <li class="feature">
+              <span class="feature__num">01</span>
+              <h3>Describe your place</h3>
+              <p>
+                Tell us the type, the space, the amenities and what makes it
+                yours. Your progress is saved as you go.
+              </p>
+            </li>
+            <li class="feature">
+              <span class="feature__num">02</span>
+              <h3>Set a clear price</h3>
+              <p>
+                Choose a nightly price and preview what guests will pay once
+                fees and taxes are included.
+              </p>
+            </li>
+            <li class="feature">
+              <span class="feature__num">03</span>
+              <h3>Publish when you're ready</h3>
+              <p>
+                Preview your listing exactly as guests will see it, then
+                publish, unpublish or edit it any time.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/host.js"></script>
+  </body>
+</html>
