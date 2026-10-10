@@ -761,3 +761,133 @@
   margin-top: var(--sp-2);
   color: var(--text);
 }
+
+/* Section title */
+.p-title {
+  margin-bottom: var(--sp-4);
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Price breakdown */
+.breakdown {
+  display: grid;
+  gap: var(--sp-3);
+  margin: 0;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+}
+.breakdown > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.breakdown dt {
+  color: var(--text-secondary);
+}
+.breakdown dd {
+  margin: 0;
+  font-weight: 600;
+}
+.breakdown__total {
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+.breakdown__total dt,
+.breakdown__total dd {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Checkbox row */
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: 32px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+.check input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand);
+}
+
+/* Form field */
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+.field .optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.field__hint {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.field__error {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--error);
+}
+.field__error:empty {
+  display: none;
+}
+.input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+.input[aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px rgb(192 57 43 / 0.2);
+}
+.input.textarea {
+  padding: var(--sp-3);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Alert */
+.alert {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+}
+.alert--error {
+  background: #fbeceb;
+  border-color: #e6b8b3;
+  color: #8f2a20;
+}
+
+/* Button loading state */
+.btn.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+.btn.is-loading::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

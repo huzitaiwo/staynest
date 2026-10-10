@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Confirm your stay — StayNest</title>
+    <meta
+      name="description"
+      content="Confirm your dates, add your details and complete your StayNest reservation."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/booking.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="checkout">
+      <div class="container">
+        <div data-head>
+          <a class="back-link" data-back href="search.html"
+            ><svg class="icon" aria-hidden="true">
+              <use href="#i-chevron-left" /></svg
+            ><span>Back</span></a
+          >
+          <header class="checkout__head">
+            <p class="eyebrow" data-eyebrow>Your reservation</p>
+            <h1 class="h1" data-title>Confirm your stay</h1>
+          </header>
+        </div>
+
+        <!-- Checkout -->
+        <div class="bk-layout" data-checkout hidden>
+          <div class="bk-main">
+            <ol class="stepper" data-stepper aria-label="Booking progress">
+              <li class="is-current" aria-current="step">
+                <span class="stepper__num">1</span><span>Trip</span>
+              </li>
+              <li><span class="stepper__num">2</span><span>Details</span></li>
+              <li><span class="stepper__num">3</span><span>Payment</span></li>
+            </ol>
+
+            <form data-form novalidate>
+              <!-- Step 1 -->
+              <section class="panel" data-step="1" aria-labelledby="st1">
+                <h2 class="p-title" id="st1" tabindex="-1">Your trip</h2>
+                <div class="form-grid form-grid--2">
+                  <div class="field">
+                    <label for="t-in">Check in</label>
+                    <input
+                      class="input"
+                      id="t-in"
+                      type="date"
+                      aria-describedby="dates-err"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="t-out">Check out</label>
+                    <input
+                      class="input"
+                      id="t-out"
+                      type="date"
+                      aria-describedby="dates-err"
+                    />
+                  </div>
+                  <p
+                    class="field__error span-2"
+                    id="dates-err"
+                    role="alert"
+                  ></p>
+                  <div class="field span-2">
+                    <label for="t-guests">Guests</label>
+                    <select class="input" id="t-guests"></select>
+                  </div>
+                  <div class="field span-2">
+                    <label for="t-note"
+                      >Note for your host
+                      <span class="optional">(optional)</span></label
+                    >
+                    <textarea
+                      class="input textarea"
+                      id="t-note"
+                      rows="3"
+                      maxlength="300"
+                      placeholder="Arrival time, special requests…"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="panel__actions">
+                  <button class="btn btn--primary" type="button" data-next>
+                    Continue
+                  </button>
+                </div>
+              </section>
+
+              <!-- Step 2 -->
+              <section class="panel" data-step="2" aria-labelledby="st2" hidden>
+                <h2 class="p-title" id="st2" tabindex="-1">Your details</h2>
+                <p class="panel__lead">
+                  Used only to name your reservation. In this demo nothing is
+                  sent anywhere.
+                </p>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="c-name">Full name</label>
+                    <input
+                      class="input"
+                      id="c-name"
+                      type="text"
+                      autocomplete="name"
+                      data-rule="name"
+                      aria-describedby="c-name-err"
+                    />
+                    <p class="field__error" id="c-name-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="c-email">Email</label>
+                    <input
+                      class="input"
+                      id="c-email"
+                      type="email"
+                      autocomplete="email"
+                      data-rule="email"
+                      aria-describedby="c-email-err"
+                    />
+                    <p class="field__error" id="c-email-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="c-phone"
+                      >Phone <span class="optional">(optional)</span></label
+                    >
+                    <input
+                      class="input"
+                      id="c-phone"
+                      type="tel"
+                      autocomplete="tel"
+                      data-rule="phone"
+                      aria-describedby="c-phone-err"
+                    />
+                    <p class="field__error" id="c-phone-err"></p>
+                  </div>
+                </div>
+                <div class="panel__actions">
+                  <button class="btn btn--outline" type="button" data-back-step>
+                    Back
+                  </button>
+                  <button class="btn btn--primary" type="button" data-next>
+                    Continue
+                  </button>
+                </div>
+              </section>
+
+              <!-- Step 3 -->
+              <section class="panel" data-step="3" aria-labelledby="st3" hidden>
+                <h2 class="p-title" id="st3" tabindex="-1">Payment</h2>
+                <p class="notice">
+                  <strong>Demo checkout.</strong> No real payment is taken and
+                  card details never leave this page. Use
+                  <code>4242 4242 4242 4242</code> to confirm, or
+                  <code>4000 0000 0000 0002</code> to see a declined payment.
+                </p>
+
+                <div
+                  class="alert alert--error"
+                  role="alert"
+                  data-pay-error
+                  hidden
+                ></div>
+
+                <div class="form-grid form-grid--2">
+                  <div class="field span-2">
+                    <label for="p-name">Name on card</label>
+                    <input
+                      class="input"
+                      id="p-name"
+                      type="text"
+                      autocomplete="cc-name"
+                      data-rule="cname"
+                      aria-describedby="p-name-err"
+                    />
+                    <p class="field__error" id="p-name-err"></p>
+                  </div>
+                  <div class="field span-2">
+                    <label for="p-num">Card number</label>
+                    <input
+                      class="input"
+                      id="p-num"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="cc-number"
+                      placeholder="1234 5678 9012 3456"
+                      data-rule="cnum"
+                      aria-describedby="p-num-err"
+                    />
+                    <p class="field__error" id="p-num-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="p-exp">Expiry</label>
+                    <input
+                      class="input"
+                      id="p-exp"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="cc-exp"
+                      placeholder="MM/YY"
+                      maxlength="5"
+                      data-rule="cexp"
+                      aria-describedby="p-exp-err"
+                    />
+                    <p class="field__error" id="p-exp-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="p-cvc">Security code</label>
+                    <input
+                      class="input"
+                      id="p-cvc"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="cc-csc"
+                      placeholder="123"
+                      maxlength="4"
+                      data-rule="ccvc"
+                      aria-describedby="p-cvc-err"
+                    />
+                    <p class="field__error" id="p-cvc-err"></p>
+                  </div>
+                  <div class="field span-2">
+                    <label class="check"
+                      ><input
+                        id="p-terms"
+                        type="checkbox"
+                        data-rule="terms"
+                        aria-describedby="p-terms-err"
+                      />
+                      I agree to the house rules and cancellation policy.</label
+                    >
+                    <p class="field__error" id="p-terms-err"></p>
+                  </div>
+                </div>
+                <div class="panel__actions">
+                  <button class="btn btn--outline" type="button" data-back-step>
+                    Back
+                  </button>
+                  <button class="btn btn--primary" type="submit" data-pay>
+                    Pay
+                  </button>
+                </div>
+              </section>
+            </form>
+          </div>
+
+          <aside class="summary" aria-label="Booking summary">
+            <div class="summary__card">
+              <div class="summary__prop">
+                <img data-s-img src="" alt="" width="96" height="96" />
+                <div>
+                  <p class="eyebrow" data-s-type></p>
+                  <p class="summary__title" data-s-title></p>
+                  <p class="summary__meta" data-s-loc></p>
+                  <p class="summary__meta summary__rating">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-star" /></svg
+                    ><span data-s-rating></span>
+                  </p>
+                </div>
+              </div>
+              <dl class="summary__trip">
+                <div>
+                  <dt>Dates</dt>
+                  <dd data-s-dates>Add dates</dd>
+                </div>
+                <div>
+                  <dt>Guests</dt>
+                  <dd data-s-guests></dd>
+                </div>
+              </dl>
+              <p class="summary__empty" data-s-empty>
+                Add your dates to see the full price.
+              </p>
+              <dl class="breakdown" data-s-breakdown hidden>
+                <div>
+                  <dt data-s-l-nights></dt>
+                  <dd data-s-v-nights></dd>
+                </div>
+                <div>
+                  <dt>Cleaning fee</dt>
+                  <dd data-s-v-cleaning></dd>
+                </div>
+                <div>
+                  <dt>Service fee</dt>
+                  <dd data-s-v-service></dd>
+                </div>
+                <div>
+                  <dt>Taxes</dt>
+                  <dd data-s-v-tax></dd>
+                </div>
+                <div class="breakdown__total">
+                  <dt>Total (EUR)</dt>
+                  <dd data-s-v-total></dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Confirmation -->
+        <section
+          class="confirm"
+          data-confirmation
+          aria-labelledby="confirm-title"
+          hidden
+        >
+          <svg class="confirm__check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle cx="26" cy="26" r="25" />
+            <path d="M14 27l8 8 16-16" />
+          </svg>
+          <div>
+            <h2 class="confirm__title" id="confirm-title" tabindex="-1">
+              You're all set.
+            </h2>
+            <p class="confirm__lead">
+              Reservation <strong data-c-ref></strong> is confirmed. Keep this
+              reference handy.
+            </p>
+          </div>
+          <dl class="confirm__list">
+            <div>
+              <dt>Stay</dt>
+              <dd data-c-title></dd>
+            </div>
+            <div>
+              <dt>Dates</dt>
+              <dd data-c-dates></dd>
+            </div>
+            <div>
+              <dt>Guests</dt>
+              <dd data-c-guests></dd>
+            </div>
+            <div>
+              <dt>Reserved for</dt>
+              <dd data-c-name></dd>
+            </div>
+            <div>
+              <dt>Total paid</dt>
+              <dd data-c-total></dd>
+            </div>
+            <div>
+              <dt>Payment</dt>
+              <dd data-c-card></dd>
+            </div>
+          </dl>
+          <p class="confirm__note">
+            This is a demo booking, saved only in this browser. No email is sent
+            and no payment was taken.
+          </p>
+          <div class="confirm__actions">
+            <button class="btn btn--primary" type="button" data-ics>
+              Add to calendar
+            </button>
+            <a class="btn btn--outline" data-c-link href="search.html"
+              >View the stay</a
+            >
+            <a class="btn btn--outline" href="index.html">Back to home</a>
+          </div>
+        </section>
+
+        <!-- Missing booking -->
+        <div class="empty" data-missing hidden>
+          <span class="empty__icon" aria-hidden="true"
+            ><svg class="icon" aria-hidden="true"><use href="#i-compass" /></svg
+          ></span>
+          <h1 class="empty__title">Choose a stay first</h1>
+          <p class="empty__text">
+            Pick a place and your dates, then come back here to confirm.
+          </p>
+          <a class="btn btn--primary" href="search.html">Browse stays</a>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+  </body>
+</html>

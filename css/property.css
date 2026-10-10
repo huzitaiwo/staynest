@@ -238,14 +238,6 @@ html:has(dialog[open]) {
   padding-top: 0;
   border-top: 0;
 }
-.p-title {
-  margin-bottom: var(--sp-4);
-  font-family: var(--font-display);
-  font-size: 1.625rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
 
 .facts__list {
   display: flex;
@@ -534,35 +526,6 @@ html:has(dialog[open]) {
   text-align: center;
   font-size: var(--fs-xs);
   color: var(--text-muted);
-}
-.breakdown {
-  display: grid;
-  gap: var(--sp-3);
-  margin: 0;
-  padding-top: var(--sp-4);
-  border-top: 1px solid var(--border);
-  font-size: var(--fs-sm);
-}
-.breakdown > div {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--sp-3);
-}
-.breakdown dt {
-  color: var(--text-secondary);
-}
-.breakdown dd {
-  margin: 0;
-  font-weight: 600;
-}
-.breakdown__total {
-  padding-top: var(--sp-3);
-  border-top: 1px solid var(--border);
-}
-.breakdown__total dt,
-.breakdown__total dd {
-  color: var(--text);
-  font-weight: 700;
 }
 
 /* Similar stays */

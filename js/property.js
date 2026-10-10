@@ -19,8 +19,7 @@
     const el = $(sel);
     if (el) el.textContent = text;
   };
-  const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
-  const fmt = (n) => `€${n.toLocaleString("en-GB")}`;
+  const { plural, fmt } = SN;
   const icon = (n) =>
     `<svg class="icon" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 
@@ -212,8 +211,6 @@
   inEl.value = q.get("checkin") || "";
   outEl.value = q.get("checkout") || "";
 
-  const nightsBetween = (a, b) =>
-    Math.round((new Date(b) - new Date(a)) / 864e5);
   function updateBooking() {
     errEl.hidden = true;
     breakdown.hidden = true;
@@ -221,30 +218,21 @@
     cta.textContent = "Add dates to reserve";
     if (!inEl.value || !outEl.value) return;
 
-    const n = nightsBetween(inEl.value, outEl.value);
-    const problem =
-      n < 1
-        ? "Check-out must be after check-in."
-        : n > 30
-          ? "Stays are limited to 30 nights."
-          : "";
+    const problem = SN.validateStay(inEl.value, outEl.value);
     if (problem) {
       errEl.textContent = problem;
       errEl.hidden = false;
       return;
     }
 
-    const f = SN.fees;
-    const subtotal = p.price * n;
-    const cleaning = Math.round((p.price * f.cleaningRate) / 5) * 5;
-    const service = Math.round(subtotal * f.serviceRate);
-    const tax = Math.round((subtotal + cleaning + service) * f.taxRate);
+    const n = SN.nights(inEl.value, outEl.value);
+    const t = SN.quote(p, n);
     set("[data-l-nights]", `${fmt(p.price)} × ${plural(n, "night")}`);
-    set("[data-v-nights]", fmt(subtotal));
-    set("[data-v-cleaning]", fmt(cleaning));
-    set("[data-v-service]", fmt(service));
-    set("[data-v-tax]", fmt(tax));
-    set("[data-v-total]", fmt(subtotal + cleaning + service + tax));
+    set("[data-v-nights]", fmt(t.subtotal));
+    set("[data-v-cleaning]", fmt(t.cleaning));
+    set("[data-v-service]", fmt(t.service));
+    set("[data-v-tax]", fmt(t.tax));
+    set("[data-v-total]", fmt(t.total));
     breakdown.hidden = false;
     cta.disabled = false;
     cta.textContent = "Reserve";

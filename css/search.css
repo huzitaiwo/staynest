@@ -168,20 +168,6 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.check {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  min-height: 32px;
-  font-size: var(--fs-sm);
-  cursor: pointer;
-}
-.check input {
-  flex: none;
-  width: 18px;
-  height: 18px;
-  accent-color: var(--brand);
-}
 .price-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
