@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Earnings · StayNest hosting</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      );
+    </script>
+  </head>
+  <body data-role="host">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head dash__head--row">
+          <div>
+            <p class="eyebrow">Hosting</p>
+            <h1 class="h1">Earnings</h1>
+          </div>
+          <label class="field field--inline">
+            <span class="visually-hidden">Filter by listing</span>
+            <select class="select" data-listing-filter></select>
+          </label>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="host-nav"></div>
+
+          <div class="dash__content">
+            <p class="notice">
+              Figures are worked out from bookings made in this browser: nightly
+              rate plus cleaning fee, counted in the month of check-in. Taxes
+              and service fees aren't included.
+            </p>
+
+            <div class="kpis" data-kpis></div>
+
+            <section class="chart-card" aria-labelledby="chart-title">
+              <div class="chart-card__head">
+                <h2 class="p-title" id="chart-title">Monthly earnings</h2>
+                <div class="chart-card__controls">
+                  <div
+                    class="chip-row"
+                    role="group"
+                    aria-label="Time range"
+                    data-range
+                  >
+                    <button
+                      class="chip"
+                      type="button"
+                      data-n="6"
+                      aria-pressed="true"
+                    >
+                      6 months
+                    </button>
+                    <button
+                      class="chip"
+                      type="button"
+                      data-n="12"
+                      aria-pressed="false"
+                    >
+                      12 months
+                    </button>
+                  </div>
+                  <div
+                    class="chip-row"
+                    role="group"
+                    aria-label="View"
+                    data-view
+                  >
+                    <button
+                      class="chip"
+                      type="button"
+                      data-v="chart"
+                      aria-pressed="true"
+                    >
+                      Chart
+                    </button>
+                    <button
+                      class="chip"
+                      type="button"
+                      data-v="table"
+                      aria-pressed="false"
+                    >
+                      Table
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <ul class="chart-legend" role="list">
+                <li>
+                  <span
+                    class="chart-legend__key chart-legend__key--earned"
+                  ></span
+                  >Completed stays
+                </li>
+                <li>
+                  <span
+                    class="chart-legend__key chart-legend__key--booked"
+                  ></span
+                  >Upcoming and current
+                </li>
+              </ul>
+
+              <div class="chart" data-chart>
+                <svg
+                  class="chart__svg"
+                  data-svg
+                  viewBox="0 0 640 300"
+                  role="group"
+                  aria-label="Bar chart of monthly earnings"
+                ></svg>
+                <div class="chart__tip" data-tip role="status" hidden></div>
+              </div>
+
+              <div class="table-wrap" data-table-wrap hidden>
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Monthly earnings
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Month</th>
+                      <th scope="col">Nights</th>
+                      <th scope="col">Completed</th>
+                      <th scope="col">Upcoming</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody data-tbody></tbody>
+                </table>
+              </div>
+
+              <div class="empty" data-empty hidden>
+                <span class="empty__icon" aria-hidden="true"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-calendar" /></svg
+                ></span>
+                <h3 class="empty__title">No earnings yet</h3>
+                <p class="empty__text">
+                  Once guests book your stays, monthly earnings appear here.
+                </p>
+              </div>
+            </section>
+
+            <section class="dash-section" aria-labelledby="by-title">
+              <h2 class="p-title" id="by-title">By listing</h2>
+              <ul class="rows share-list" role="list" data-by></ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/host-data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hosting-earnings.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
