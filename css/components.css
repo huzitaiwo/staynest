@@ -891,3 +891,32 @@
     transform: rotate(360deg);
   }
 }
+
+/* Auth and form extras */
+.input-wrap {
+  position: relative;
+}
+.input-wrap .input {
+  padding-right: 4.5rem;
+}
+.input-wrap__btn {
+  position: absolute;
+  right: var(--sp-3);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.field__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.alert--success {
+  background: #eaf4ee;
+  border-color: #b9d8c6;
+  color: #1f5a37;
+}

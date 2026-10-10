@@ -181,15 +181,6 @@
     return sum % 10 === 0;
   };
   const rules = {
-    name: (v) => (v.trim().length >= 2 ? "" : "Enter your full name."),
-    email: (v) =>
-      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
-        ? ""
-        : "Enter a valid email address.",
-    phone: (v) =>
-      !v.trim() || /^[+\d][\d\s()-]{6,18}$/.test(v.trim())
-        ? ""
-        : "Enter a valid phone number, or leave this blank.",
     cname: (v) => (v.trim().length >= 2 ? "" : "Enter the name on the card."),
     cnum: (v) => {
       const n = v.replace(/\s/g, "");
@@ -209,13 +200,7 @@
     ccvc: (v) => (/^\d{3,4}$/.test(v) ? "" : "Enter the 3 or 4 digit code."),
     terms: (v) => (v ? "" : "Please accept to continue."),
   };
-  function checkField(el) {
-    const value = el.type === "checkbox" ? el.checked : el.value;
-    const msg = rules[el.dataset.rule](value);
-    el.setAttribute("aria-invalid", String(Boolean(msg)));
-    $(`#${el.id}-err`).textContent = msg;
-    return !msg;
-  }
+  const checkField = (el) => SN.checkField(el, rules);
   function validateStep(n) {
     const bad = $$(`[data-step="${n}"] [data-rule]`).filter(
       (el) => !checkField(el),

@@ -46,7 +46,7 @@ const headerHTML = `
           </ul>
         </nav>
         <div class="site-header__actions">
-          <a class="nav__link" href="login.html">Sign in</a>
+          <span data-auth-slot="desktop"><a class="nav__link" href="login.html">Sign in</a></span>
           <a class="btn btn--light btn--sm" href="host.html">Become a host</a>
         </div>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
@@ -61,7 +61,7 @@ const headerHTML = `
                 ${NAV.map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join("")}
               </ul>
             </nav>
-            <a class="btn btn--light" href="host.html">Become a host</a>
+            <span data-auth-slot="mobile"><a class="panel-signin" href="login.html">Sign in</a></span>
             <a class="panel-signin" href="login.html">Sign in</a>
           </div>
         </div>
