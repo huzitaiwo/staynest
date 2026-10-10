@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hosting overview — StayNest</title>
+    <meta
+      name="description"
+      content="Your StayNest hosting overview: revenue, occupancy, reservations and listings."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body data-role="host">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head dash__head--row">
+          <div>
+            <p class="eyebrow" data-greeting>Hosting</p>
+            <h1 class="h1">Overview</h1>
+          </div>
+          <a class="btn btn--primary" href="hosting-new.html">Create listing</a>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="host-nav"></div>
+
+          <div class="dash__content">
+            <p class="notice">
+              Figures are worked out from bookings made in this browser. The
+              built-in example stays are hosted by Handsome.
+            </p>
+
+            <div class="kpis" data-kpis></div>
+
+            <section class="dash-section" aria-labelledby="res-title">
+              <h2 class="p-title" id="res-title">Upcoming reservations</h2>
+              <ul class="rows" role="list" data-reservations></ul>
+              <div class="empty" data-res-empty hidden>
+                <span class="empty__icon" aria-hidden="true"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-calendar" /></svg
+                ></span>
+                <h3 class="empty__title">No upcoming reservations</h3>
+                <p class="empty__text">
+                  When guests book one of your stays, the reservation appears
+                  here.
+                </p>
+              </div>
+            </section>
+
+            <section class="dash-section" aria-labelledby="lst-title">
+              <h2 class="p-title" id="lst-title">Your listings</h2>
+              <ul class="rows" role="list" data-listings></ul>
+            </section>
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <dialog class="modal" id="delete-dialog" aria-labelledby="delete-title">
+      <form method="dialog">
+        <h2 class="modal__title" id="delete-title">Delete this listing?</h2>
+        <p class="modal__text" data-delete-text></p>
+        <div class="modal__actions">
+          <button class="btn btn--outline btn--sm" value="keep">Keep it</button>
+          <button class="btn btn--primary btn--sm" value="delete">
+            Delete listing
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hosting.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>

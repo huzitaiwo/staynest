@@ -1,4 +1,3 @@
-// js/host.js
 import {
   auth,
   db,
