@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your trips — StayNest</title>
+    <meta
+      name="description"
+      content="Your upcoming, current and past StayNest trips."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head">
+          <p class="eyebrow" data-greeting>Your account</p>
+          <h1 class="h1">Trips</h1>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="dash-nav"></div>
+
+          <div class="dash__content">
+            <p class="notice">
+              Trips are kept in this browser for now. They will follow your
+              account once the backend is connected.
+            </p>
+
+            <div
+              class="tabs"
+              role="tablist"
+              aria-label="Trip status"
+              data-tabs
+            ></div>
+
+            <div id="trips-panel" role="tabpanel" tabindex="0" data-panel>
+              <ul class="trips" role="list" data-trips></ul>
+              <div class="empty" data-empty hidden>
+                <span class="empty__icon" aria-hidden="true"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-compass" /></svg
+                ></span>
+                <h2 class="empty__title" data-empty-title></h2>
+                <p class="empty__text" data-empty-text></p>
+                <a class="btn btn--primary" href="search.html">Browse stays</a>
+              </div>
+            </div>
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <dialog class="modal" id="cancel-dialog" aria-labelledby="cancel-title">
+      <form method="dialog">
+        <h2 class="modal__title" id="cancel-title">Cancel this trip?</h2>
+        <p class="modal__text" data-cancel-text></p>
+        <div class="modal__actions">
+          <button class="btn btn--outline btn--sm" value="keep">
+            Keep trip
+          </button>
+          <button class="btn btn--primary btn--sm" value="cancel">
+            Cancel trip
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/trips.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
