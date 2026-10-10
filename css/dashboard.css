@@ -219,3 +219,220 @@ html.guarding .dash {
   opacity: 0;
   transform: scale(0.96);
 }
+
+.stack {
+  display: grid;
+  gap: var(--sp-2);
+}
+.avatar--lg {
+  width: 72px;
+  height: 72px;
+  font-size: 2rem;
+}
+.panel-card {
+  display: grid;
+  gap: var(--sp-5);
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.panel-card + .panel-card {
+  margin-top: var(--sp-5);
+}
+.panel-card .p-title {
+  margin-bottom: 0;
+}
+
+/* Profile */
+.profile__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+.profile__name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.profile__role {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+.profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.profile__rows {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+.profile__rows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-block: var(--sp-2);
+  border-bottom: 1px solid var(--border);
+}
+.profile__rows dt {
+  color: var(--text-secondary);
+}
+.profile__rows dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Inbox */
+.inbox {
+  display: grid;
+  height: 36rem;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.inbox[data-pane="list"] .thread {
+  display: none;
+}
+.inbox[data-pane="thread"] .inbox__list {
+  display: none;
+}
+@media (min-width: 900px) {
+  .inbox {
+    grid-template-columns: 19rem 1fr;
+  }
+  .inbox[data-pane] .thread,
+  .inbox[data-pane] .inbox__list {
+    display: grid;
+  }
+  .thread__back {
+    display: none;
+  }
+}
+.inbox__list {
+  overflow-y: auto;
+  align-content: start;
+  border-right: 1px solid var(--border);
+}
+.inbox__list ul {
+  padding: 0;
+  list-style: none;
+}
+.convo {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--sp-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--t-fast);
+}
+.convo:hover {
+  background: var(--bg);
+}
+.convo[aria-current="true"] {
+  background: var(--sand);
+}
+.convo__text {
+  display: grid;
+  min-width: 0;
+}
+.convo__name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.convo__prop,
+.convo__snip {
+  overflow: hidden;
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.convo__time {
+  align-self: start;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.thread {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+}
+.thread__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+.thread__name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.thread__meta {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+.thread__meta a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.thread__log {
+  display: grid;
+  align-content: start;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  overflow-y: auto;
+}
+.thread__empty {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.msg {
+  max-width: min(82%, 28rem);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.msg--guest {
+  justify-self: end;
+  background: var(--text);
+  color: var(--bg);
+  border-bottom-right-radius: 4px;
+}
+.msg--host {
+  justify-self: start;
+  background: var(--sand);
+  border-bottom-left-radius: 4px;
+}
+.msg time {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.6875rem;
+  opacity: 0.7;
+}
+.thread__foot {
+  border-top: 1px solid var(--border);
+}
+.starters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-3) 0;
+}
+.composer {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+}

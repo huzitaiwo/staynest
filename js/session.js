@@ -26,6 +26,7 @@ function render(user) {
         <p class="user-menu__name"></p>
         <a href="trips.html">Trips</a>
         <a href="saved.html">Saved</a>
+        <a href="messages.html">Messages</a><a href="account.html">Profile</a>
         <button type="button" data-signout>Sign out</button>
       </div>
     </details>`;
@@ -35,6 +36,7 @@ function render(user) {
   slots.mobile.innerHTML = `
     <a class="panel-signin" href="trips.html">Trips</a>
     <a class="panel-signin" href="saved.html">Saved</a>
+    <a class="panel-signin" href="messages.html">Messages</a><a class="panel-signin" href="account.html">Profile</a>
     <button class="panel-signin" type="button" data-signout>Sign out</button>`;
 }
 

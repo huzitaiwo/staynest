@@ -151,6 +151,8 @@ const searchHTML = `
 const DASH_NAV = [
   { href: "trips.html", label: "Trips" },
   { href: "saved.html", label: "Saved" },
+  { href: "messages.html", label: "Messages" },
+  { href: "account.html", label: "Profile" },
 ];
 const dashNavHTML = () => {
   const here = location.pathname.split("/").pop() || "index.html";

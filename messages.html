@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Messages — StayNest</title>
+    <meta
+      name="description"
+      content="Your conversations with StayNest hosts."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head">
+          <p class="eyebrow" data-greeting>Your account</p>
+          <h1 class="h1">Messages</h1>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="dash-nav"></div>
+
+          <div class="dash__content">
+            <p class="notice">
+              Messages are kept in this browser for now. Host replies will
+              arrive once the backend is connected.
+            </p>
+
+            <div class="inbox" data-inbox data-pane="list" hidden>
+              <section class="inbox__list" aria-label="Conversations">
+                <ul role="list" data-convos></ul>
+              </section>
+
+              <section class="thread" aria-label="Conversation">
+                <div class="thread__head">
+                  <button
+                    class="icon-btn thread__back"
+                    type="button"
+                    data-back
+                    aria-label="Back to conversations"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-chevron-left" />
+                    </svg>
+                  </button>
+                  <span
+                    class="avatar avatar--sm"
+                    aria-hidden="true"
+                    data-t-avatar
+                  ></span>
+                  <div>
+                    <p class="thread__name" data-t-name></p>
+                    <p class="thread__meta" data-t-meta></p>
+                  </div>
+                </div>
+
+                <div
+                  class="thread__log"
+                  role="log"
+                  aria-live="polite"
+                  aria-label="Messages"
+                  tabindex="0"
+                  data-log
+                ></div>
+
+                <div class="thread__foot">
+                  <div class="starters" data-starters></div>
+                  <form class="composer" data-composer>
+                    <label class="visually-hidden" for="msg-input"
+                      >Message</label
+                    >
+                    <textarea
+                      class="input"
+                      id="msg-input"
+                      rows="1"
+                      maxlength="1000"
+                      placeholder="Write a message…"
+                    ></textarea>
+                    <button
+                      class="btn btn--primary btn--sm"
+                      type="submit"
+                      data-send
+                      disabled
+                    >
+                      Send
+                    </button>
+                  </form>
+                </div>
+              </section>
+            </div>
+
+            <div class="empty" data-empty hidden>
+              <span class="empty__icon" aria-hidden="true"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-compass" /></svg
+              ></span>
+              <h2 class="empty__title">No messages yet</h2>
+              <p class="empty__text">
+                Found somewhere you like? Use “Contact host” on a stay to ask a
+                question before you book.
+              </p>
+              <a class="btn btn--primary" href="search.html">Browse stays</a>
+            </div>
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/messages.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>

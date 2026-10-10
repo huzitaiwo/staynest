@@ -73,8 +73,7 @@
   function actionsFor(t) {
     const view = `<a class="btn btn--outline btn--sm" href="property.html?id=${t.p.id}">View stay</a>`;
     const cal = `<button class="btn btn--outline btn--sm" type="button" data-ics="${esc(t.b.ref)}">Add to calendar</button>`;
-    const contact =
-      '<a class="btn btn--outline btn--sm" href="messages.html">Contact host</a>';
+    const contact = `<a class="btn btn--outline btn--sm" href="messages.html?property=${t.p.id}">Contact host</a>`;
     const again = `<a class="btn btn--primary btn--sm" href="property.html?id=${t.p.id}">Book again</a>`;
     const cancel = `<button class="btn btn--outline btn--sm" type="button" data-cancel="${esc(t.b.ref)}">Cancel trip</button>`;
     return {

@@ -134,13 +134,7 @@
     .join("");
 
   /* Host */
-  const h = SN.host;
-  set("[data-host-initial]", h.initial);
-  set("[data-host-name]", `Hosted by ${h.name}`);
-  set("[data-host-since]", `Hosting since ${h.since}`);
-  set("[data-host-rating]", h.rating.toFixed(1));
-  set("[data-host-response]", `${h.responseRate}%`);
-  set("[data-host-time]", h.responseTime);
+  $(".host-card__cta").href = `messages.html?property=${p.id}`;
 
   /* Reviews */
   const cats = [

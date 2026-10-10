@@ -1008,3 +1008,42 @@
   border-color: var(--text);
   color: var(--bg);
 }
+
+/* Avatar (moved from property.css) */
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.avatar--sm {
+  width: 40px;
+  height: 40px;
+  background: var(--sand);
+  color: var(--text-secondary);
+}
+.avatar--sm .icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Form grid (moved from booking.css) */
+.form-grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+@media (min-width: 600px) {
+  .form-grid--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.span-2 {
+  grid-column: 1 / -1;
+}
