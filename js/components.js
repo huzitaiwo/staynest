@@ -159,6 +159,7 @@ const HOST_NAV = [
   { href: "hosting-reservations.html", label: "Reservations" },
   { href: "hosting-calendar.html", label: "Calendar" },
   { href: "hosting-earnings.html", label: "Earnings" },
+  { href: "hosting-reviews.html", label: "Reviews" },
   { href: "hosting-new.html", label: "New listing" },
 ];
 const navHTML = (items, label) => {

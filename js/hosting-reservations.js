@@ -62,6 +62,7 @@
     const p = propertyOf(b.id);
     const phase = B.phase(b);
     const nights = SN.nights(b.checkin, b.checkout);
+
     const canCancel = phase === "upcoming" || phase === "current";
     return `<li class="row row--res row--res-full">
       <div>
@@ -81,6 +82,7 @@
         <div class="row__actions">
           <a class="btn btn--outline btn--sm" href="messages.html?id=${esc(b.id)}">Message</a>
           <button class="btn btn--outline btn--sm" type="button" data-ics="${esc(b.ref)}">Add to calendar</button>
+          ${phase === "past" ? `<a class="btn btn--outline btn--sm" href="review.html?ref=${esc(b.ref)}&as=host">${SN.reviews.forBooking(b.ref, "host") ? "Your review" : "Review guest"}</a>` : ""}
           ${canCancel ? `<button class="btn btn--outline btn--sm" type="button" data-cancel="${esc(b.ref)}">Cancel</button>` : ""}
         </div>
       </div>

@@ -140,46 +140,69 @@
   $(".host-card__cta").href = `messages.html?property=${p.id}`;
 
   /* Reviews */
-  const cats = [
-    ["Cleanliness", 0.02],
-    ["Accuracy", -0.01],
-    ["Communication", 0.03],
-    ["Location", -0.03],
-    ["Check-in", 0.01],
-    ["Value", -0.04],
-  ];
-  set("[data-rv-score]", p.rating.toFixed(2));
-  set("[data-rv-count]", plural(p.reviews, "review"));
-  $("[data-bars]").innerHTML = cats
-    .map(([label, d]) => {
-      const v = Math.min(5, p.rating + d);
-      return `<li class="bar"><span>${label}</span><span class="bar__track" role="img" aria-label="${label}: ${v.toFixed(1)} out of 5"><span class="bar__fill" style="--v:${v.toFixed(2)}"></span></span><strong>${v.toFixed(1)}</strong></li>`;
-    })
-    .join("");
+  const escR = (s) =>
+    String(s).replace(
+      /[&<>"']/g,
+      (c) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[c],
+    );
+  const real = SN.reviews.forProperty(p.id);
+  const sum = SN.reviews.summary(p, real);
+  $("#reviews").hidden = !sum;
+  if (sum) {
+    set("[data-rv-score]", sum.score.toFixed(2));
+    set("[data-rv-count]", plural(sum.count, "review"));
+    $("[data-bars]").innerHTML = sum.cats
+      .map(
+        ([label, v]) =>
+          `<li class="bar"><span>${label}</span><span class="bar__track" role="img" aria-label="${label}: ${v.toFixed(1)} out of 5"><span class="bar__fill" style="--v:${v.toFixed(2)}"></span></span><strong>${v.toFixed(1)}</strong></li>`,
+      )
+      .join("");
 
-  const monthFmt = new Intl.DateTimeFormat("en-GB", {
-    month: "long",
-    year: "numeric",
-  });
-  $("[data-reviews]").innerHTML = Array.from(
-    { length: 6 },
-    (_, i) => SN.reviewPool[(i + p.rank) % SN.reviewPool.length],
-  )
-    .map(
-      (r) => `
-    <article class="review">
-      <header class="review__head">
-        <span class="avatar avatar--sm" aria-hidden="true">${icon("user")}</span>
-        <div>
-          <p class="review__name">StayNest guest</p>
-          <p class="review__date"><time datetime="${r.date}">${monthFmt.format(new Date(`${r.date}-01`))}</time></p>
-        </div>
-        <p class="review__stars">${icon("star")}<span>${r.rating}</span></p>
-      </header>
-      <p class="review__text">${r.text}</p>
-    </article>`,
-    )
-    .join("");
+    const monthFmt = new Intl.DateTimeFormat("en-GB", {
+      month: "long",
+      year: "numeric",
+    });
+    const pool = p.reviews
+      ? Array.from(
+          { length: 6 },
+          (_, i) => SN.reviewPool[(i + p.rank) % SN.reviewPool.length],
+        )
+      : [];
+    const items = [
+      ...real.map((r) => ({
+        rating: r.overall,
+        date: r.date.slice(0, 7),
+        text: escR(r.text),
+        name: escR(r.author || "StayNest guest"),
+        reply: r.reply,
+      })),
+      ...pool.map((r) => ({ ...r, name: "StayNest guest", reply: null })),
+    ];
+    $("[data-reviews]").innerHTML = items
+      .map(
+        (r) => `
+      <article class="review">
+        <header class="review__head">
+          <span class="avatar avatar--sm" aria-hidden="true">${icon("user")}</span>
+          <div>
+            <p class="review__name">${r.name}</p>
+            <p class="review__date"><time datetime="${r.date}">${monthFmt.format(new Date(`${r.date}-01`))}</time></p>
+          </div>
+          <p class="review__stars">${icon("star")}<span>${Number.isInteger(r.rating) ? r.rating : r.rating.toFixed(1)}</span></p>
+        </header>
+        <p class="review__text">${r.text}</p>
+        ${r.reply ? `<div class="review__reply"><p class="review__reply-by">Reply from ${escR(SN.host.name)}</p><p>${escR(r.reply.text)}</p></div>` : ""}
+      </article>`,
+      )
+      .join("");
+  }
 
   if (!p.reviews) $("#reviews").hidden = true;
 

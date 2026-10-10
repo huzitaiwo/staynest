@@ -318,7 +318,7 @@
       <div>
         <p class="map__preview-title">${p.title}</p>
         <p>${p.city}, ${p.country}</p>
-        <p>★ ${p.rating.toFixed(2)} · €${p.price} night</p>
+        <p>${p.reviews ? `★ ${p.rating.toFixed(2)} · ` : ""}€${p.price} night</p>
         <a class="link-arrow" href="property.html?id=${p.id}">View stay <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
       </div>
       <button class="icon-btn" type="button" data-preview-close aria-label="Close preview"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>`;

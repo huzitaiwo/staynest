@@ -73,13 +73,18 @@
   function actionsFor(t) {
     const view = `<a class="btn btn--outline btn--sm" href="property.html?id=${t.p.id}">View stay</a>`;
     const cal = `<button class="btn btn--outline btn--sm" type="button" data-ics="${esc(t.b.ref)}">Add to calendar</button>`;
-    const contact = `<a class="btn btn--outline btn--sm" href="messages.html?property=${t.p.id}">Contact host</a>`;
-    const again = `<a class="btn btn--primary btn--sm" href="property.html?id=${t.p.id}">Book again</a>`;
+    const contact =
+      '<a class="btn btn--outline btn--sm" href="messages.html">Contact host</a>';
+    const again = `<a class="btn btn--outline btn--sm" href="property.html?id=${t.p.id}">Book again</a>`;
     const cancel = `<button class="btn btn--outline btn--sm" type="button" data-cancel="${esc(t.b.ref)}">Cancel trip</button>`;
+
+    const mine = SN.reviews.forBooking(t.b.ref, "guest");
+    const review = `<a class="btn ${mine ? "btn--outline" : "btn--primary"} btn--sm" href="review.html?ref=${esc(t.b.ref)}">${mine ? "Your review" : "Leave a review"}</a>`;
+
     return {
       upcoming: [view, cal, contact, cancel],
       current: [view, cal, contact],
-      past: [again, view],
+      past: [review, again, view],
       cancelled: [again, view],
     }[t.phase].join("");
   }

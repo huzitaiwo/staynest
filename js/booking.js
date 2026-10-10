@@ -53,7 +53,10 @@
   set("[data-s-type]", p.type);
   set("[data-s-title]", p.title);
   set("[data-s-loc]", `${p.city}, ${p.country}`);
-  set("[data-s-rating]", `${p.rating.toFixed(2)} (${p.reviews})`);
+  set(
+    "[data-s-rating]",
+    p.reviews ? `${p.rating.toFixed(2)} (${p.reviews})` : "New",
+  );
 
   /* Step 1 inputs */
   const inEl = $("#t-in");
