@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create a listing — StayNest</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- booking.css provides the shared step-panel and success-check styles -->
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/booking.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body data-role="host">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="wizard">
+      <div class="container">
+        <!-- Blocked / not found -->
+        <div class="empty" data-blocked hidden>
+          <h1 class="empty__title" data-blocked-title></h1>
+          <p class="empty__text" data-blocked-text></p>
+          <a class="btn btn--primary" href="hosting.html">Back to overview</a>
+        </div>
+
+        <div data-wizard>
+          <header class="wizard__head">
+            <div class="wizard__bar">
+              <a class="back-link" href="hosting.html"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-chevron-left" /></svg
+                ><span>Exit</span></a
+              >
+              <p class="wizard__count" data-count-text>Step 1 of 9</p>
+            </div>
+            <div
+              class="progress"
+              role="progressbar"
+              aria-label="Listing progress"
+              aria-valuemin="1"
+              aria-valuemax="9"
+              aria-valuenow="1"
+            >
+              <span></span>
+            </div>
+          </header>
+
+          <div class="wizard__layout">
+            <form class="wizard__form" data-form novalidate>
+              <!-- 1 Type -->
+              <section class="panel" data-step="1" aria-labelledby="ws1">
+                <h1 class="p-title" id="ws1" tabindex="-1">
+                  What kind of place is it?
+                </h1>
+                <p class="step-hint">
+                  Pick the closest match. Guests can filter their search by
+                  this.
+                </p>
+                <div class="choice-group choice-grid" data-types></div>
+                <p class="field__error" id="type-err" role="alert"></p>
+              </section>
+
+              <!-- 2 Location -->
+              <section class="panel" data-step="2" aria-labelledby="ws2" hidden>
+                <h2 class="p-title" id="ws2" tabindex="-1">Where is it?</h2>
+                <p class="step-hint">
+                  Guests see the neighbourhood. Your exact address is shared
+                  only after booking.
+                </p>
+                <div class="form-grid form-grid--2">
+                  <div class="field">
+                    <label for="w-country">Country</label>
+                    <input
+                      class="input"
+                      id="w-country"
+                      type="text"
+                      autocomplete="country-name"
+                      data-rule="country"
+                      aria-describedby="w-country-err"
+                    />
+                    <p class="field__error" id="w-country-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="w-city">City</label>
+                    <input
+                      class="input"
+                      id="w-city"
+                      type="text"
+                      list="cities"
+                      autocomplete="address-level2"
+                      data-rule="city"
+                      aria-describedby="w-city-err"
+                    />
+                    <datalist id="cities" data-cities></datalist>
+                    <p class="field__error" id="w-city-err"></p>
+                  </div>
+                  <div class="field span-2">
+                    <label for="w-area"
+                      >Neighbourhood
+                      <span class="optional">(optional)</span></label
+                    >
+                    <input
+                      class="input"
+                      id="w-area"
+                      type="text"
+                      maxlength="60"
+                      placeholder="e.g. Le Marais"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <!-- 3 Space -->
+              <section class="panel" data-step="3" aria-labelledby="ws3" hidden>
+                <h2 class="p-title" id="ws3" tabindex="-1">
+                  How much space is there?
+                </h2>
+                <p class="step-hint">
+                  You can change this any time. Be accurate so guests know what
+                  to expect.
+                </p>
+                <div data-counters></div>
+              </section>
+
+              <!-- 4 Amenities -->
+              <section class="panel" data-step="4" aria-labelledby="ws4" hidden>
+                <h2 class="p-title" id="ws4" tabindex="-1">
+                  What does the place offer?
+                </h2>
+                <p class="step-hint">
+                  Select everything guests can use. Amenities help your stay
+                  show up in filtered searches.
+                </p>
+                <div class="amenity-grid" data-amenities></div>
+                <div class="field" style="margin-top: var(--sp-5)">
+                  <label class="check"
+                    ><input type="checkbox" id="w-stepfree" /> Step-free access
+                    to the main living areas</label
+                  >
+                </div>
+              </section>
+
+              <!-- 5 Photos -->
+              <section class="panel" data-step="5" aria-labelledby="ws5" hidden>
+                <h2 class="p-title" id="ws5" tabindex="-1">Add some photos</h2>
+                <p class="step-hint">
+                  The first photo is your cover. Bright, honest photos of the
+                  main rooms work best. Up to 6 for now.
+                </p>
+                <label class="dropzone">
+                  <input
+                    type="file"
+                    id="w-photos"
+                    accept="image/jpeg,image/png,image/webp"
+                    multiple
+                  />
+                  <strong>Choose photos</strong>
+                  <span>JPG, PNG or WebP · up to 12 MB each</span>
+                </label>
+                <p class="field__error" id="photos-err" role="alert"></p>
+                <ul class="photos" role="list" data-photos></ul>
+              </section>
+
+              <!-- 6 Description -->
+              <section class="panel" data-step="6" aria-labelledby="ws6" hidden>
+                <h2 class="p-title" id="ws6" tabindex="-1">
+                  Describe your place
+                </h2>
+                <p class="step-hint">
+                  A clear title and honest description build trust with guests.
+                </p>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="w-title">Title</label>
+                    <input
+                      class="input"
+                      id="w-title"
+                      type="text"
+                      maxlength="60"
+                      data-rule="title"
+                      aria-describedby="w-title-hint w-title-err"
+                    />
+                    <p class="field__hint" id="w-title-hint">
+                      10 to 60 characters, e.g. “Sunlit loft above the canal”.
+                    </p>
+                    <p class="field__error" id="w-title-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="w-note"
+                      >One-line teaser
+                      <span class="optional">(optional)</span></label
+                    >
+                    <input
+                      class="input"
+                      id="w-note"
+                      type="text"
+                      maxlength="70"
+                      data-rule="note"
+                      aria-describedby="w-note-err"
+                    />
+                    <p class="field__error" id="w-note-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="w-desc">Description</label>
+                    <textarea
+                      class="input textarea"
+                      id="w-desc"
+                      rows="7"
+                      maxlength="1000"
+                      data-rule="desc"
+                      aria-describedby="w-desc-err"
+                    ></textarea>
+                    <p class="char-count" aria-hidden="true" data-desc-count>
+                      0 / 1000
+                    </p>
+                    <p class="field__error" id="w-desc-err"></p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 7 Pricing -->
+              <section class="panel" data-step="7" aria-labelledby="ws7" hidden>
+                <h2 class="p-title" id="ws7" tabindex="-1">
+                  Set your nightly price
+                </h2>
+                <p class="step-hint">You can change it whenever you like.</p>
+                <div class="field">
+                  <label for="w-price">Price per night (€)</label>
+                  <input
+                    class="input"
+                    id="w-price"
+                    type="text"
+                    inputmode="numeric"
+                    data-rule="price"
+                    aria-describedby="w-price-hint w-price-err"
+                  />
+                  <p class="field__hint" id="w-price-hint" data-price-hint>
+                    Enter a whole number between €20 and €5,000.
+                  </p>
+                  <p class="field__error" id="w-price-err"></p>
+                </div>
+              </section>
+
+              <!-- 8 Availability -->
+              <section class="panel" data-step="8" aria-labelledby="ws8" hidden>
+                <h2 class="p-title" id="ws8" tabindex="-1">
+                  How should guests book?
+                </h2>
+                <p class="step-hint">
+                  Choose how reservations are confirmed and the shortest stay
+                  you'll accept.
+                </p>
+                <fieldset class="choice-group">
+                  <legend class="visually-hidden">Booking style</legend>
+                  <label class="choice"
+                    ><input
+                      type="radio"
+                      name="booking"
+                      value="request"
+                      checked
+                    /><span class="choice__body"
+                      ><strong>Request to book</strong
+                      ><span
+                        >Guests ask, and you reply before they're charged.</span
+                      ></span
+                    ></label
+                  >
+                  <label class="choice"
+                    ><input type="radio" name="booking" value="instant" /><span
+                      class="choice__body"
+                      ><strong>Instant booking</strong
+                      ><span>Guests can confirm straight away.</span></span
+                    ></label
+                  >
+                </fieldset>
+                <div class="field" style="margin-top: var(--sp-5)">
+                  <label for="w-nights">Minimum stay (nights)</label>
+                  <input
+                    class="input"
+                    id="w-nights"
+                    type="text"
+                    inputmode="numeric"
+                    value="1"
+                    data-rule="nights"
+                    aria-describedby="w-nights-err"
+                  />
+                  <p class="field__error" id="w-nights-err"></p>
+                </div>
+              </section>
+
+              <!-- 9 Review -->
+              <section class="panel" data-step="9" aria-labelledby="ws9" hidden>
+                <h2 class="p-title" id="ws9" tabindex="-1">
+                  Review your listing
+                </h2>
+                <p class="step-hint">
+                  Check everything looks right. You can edit any section before
+                  publishing.
+                </p>
+                <dl data-review></dl>
+                <div
+                  class="alert alert--error problems"
+                  data-problems
+                  hidden
+                ></div>
+              </section>
+
+              <div
+                class="alert alert--error"
+                role="alert"
+                data-error
+                hidden
+              ></div>
+              <p class="saved-note" role="status" data-saved></p>
+
+              <div class="panel__actions">
+                <button
+                  class="btn btn--outline push-left"
+                  type="button"
+                  data-back-step
+                >
+                  Back
+                </button>
+                <button class="btn btn--outline" type="button" data-save>
+                  Save draft
+                </button>
+                <button class="btn btn--primary" type="button" data-next>
+                  Continue
+                </button>
+                <button
+                  class="btn btn--primary"
+                  type="button"
+                  data-publish
+                  hidden
+                >
+                  Publish listing
+                </button>
+              </div>
+            </form>
+
+            <aside class="wizard__preview" aria-label="Live preview">
+              <p class="eyebrow">Live preview</p>
+              <div data-preview></div>
+              <p class="field__hint">
+                This is how your stay will appear in search.
+              </p>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Done -->
+        <section class="confirm" data-done aria-labelledby="done-title" hidden>
+          <svg class="confirm__check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle cx="26" cy="26" r="25" />
+            <path d="M14 27l8 8 16-16" />
+          </svg>
+          <div>
+            <h2
+              class="confirm__title"
+              id="done-title"
+              tabindex="-1"
+              data-done-title
+            ></h2>
+            <p class="confirm__lead" data-done-text></p>
+          </div>
+          <div class="confirm__actions">
+            <a class="btn btn--primary" data-done-view href="property.html"
+              >View listing</a
+            >
+            <a class="btn btn--outline" href="hosting.html">Back to overview</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/listing-wizard.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
