@@ -30,20 +30,7 @@
   const d = (s) => dateFmt.format(new Date(`${s}T00:00:00`));
   const dayNum = (s) => Math.floor(Date.parse(`${s}T00:00:00Z`) / 864e5);
 
-  const listingItems = () => [
-    ...SN.samples.map((p) => ({
-      id: p.id,
-      p,
-      status: L.statusOf(p.id),
-      sample: true,
-    })),
-    ...L.mine().map((l) => ({
-      id: l.id,
-      p: SN.toProperty(l),
-      status: l.status || "draft",
-      sample: false,
-    })),
-  ];
+  const listingItems = () => L.hosted();
   const propertyOf = (id) => SN.allProperties.find((p) => p.id === id);
 
   function renderKpis(items, bookings) {
