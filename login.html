@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in — StayNest</title>
+    <meta
+      name="description"
+      content="Sign in to your StayNest account to manage trips, saved stays and bookings."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="auth">
+      <aside class="auth__art">
+        <img src="assets/images/hero.jpg" alt="" width="1200" height="1600" />
+        <p class="auth__quote">Find a place worth staying for.</p>
+      </aside>
+
+      <section class="auth__panel">
+        <!-- Sign in -->
+        <div class="auth__card" data-view="login">
+          <div>
+            <p class="eyebrow">Welcome back</p>
+            <h1 class="h1 auth__title">Sign in</h1>
+            <p class="auth__lead">Pick up where you left off.</p>
+          </div>
+
+          <div
+            class="alert alert--error"
+            role="alert"
+            data-form-error
+            hidden
+          ></div>
+
+          <form class="auth__form" data-auth="login" novalidate>
+            <div class="field">
+              <label for="li-email">Email</label>
+              <input
+                class="input"
+                id="li-email"
+                type="email"
+                autocomplete="username"
+                data-rule="email"
+                aria-describedby="li-email-err"
+              />
+              <p class="field__error" id="li-email-err"></p>
+            </div>
+            <div class="field">
+              <div class="field__row">
+                <label for="li-password">Password</label>
+                <button class="link-btn" type="button" data-show-reset>
+                  Forgot password?
+                </button>
+              </div>
+              <div class="input-wrap">
+                <input
+                  class="input"
+                  id="li-password"
+                  type="password"
+                  autocomplete="current-password"
+                  data-rule="required"
+                  aria-describedby="li-password-err"
+                />
+                <button
+                  class="input-wrap__btn"
+                  type="button"
+                  data-toggle-password
+                  aria-controls="li-password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p class="field__error" id="li-password-err"></p>
+            </div>
+            <label class="check"
+              ><input type="checkbox" name="keep" checked /> Keep me signed in
+              on this device</label
+            >
+            <button
+              class="btn btn--primary btn--block"
+              type="submit"
+              data-submit
+            >
+              Sign in
+            </button>
+          </form>
+
+          <p class="auth__switch">
+            New to StayNest?
+            <a class="link-btn" data-keep-next href="signup.html"
+              >Create an account</a
+            >
+          </p>
+        </div>
+
+        <!-- Reset password -->
+        <div class="auth__card" data-view="reset" hidden>
+          <div>
+            <p class="eyebrow">Reset password</p>
+            <h1 class="h1 auth__title">Forgot your password?</h1>
+            <p class="auth__lead">
+              Enter your email and we'll send you a link to choose a new one.
+            </p>
+          </div>
+
+          <div
+            class="alert alert--error"
+            role="alert"
+            data-form-error
+            hidden
+          ></div>
+          <div
+            class="alert alert--success"
+            role="status"
+            data-form-success
+            hidden
+          ></div>
+
+          <form class="auth__form" data-auth="reset" novalidate>
+            <div class="field">
+              <label for="rs-email">Email</label>
+              <input
+                class="input"
+                id="rs-email"
+                type="email"
+                autocomplete="email"
+                data-rule="email"
+                aria-describedby="rs-email-err"
+              />
+              <p class="field__error" id="rs-email-err"></p>
+            </div>
+            <button
+              class="btn btn--primary btn--block"
+              type="submit"
+              data-submit
+            >
+              Send reset link
+            </button>
+          </form>
+
+          <p class="auth__switch">
+            <button class="link-btn" type="button" data-show-login>
+              Back to sign in
+            </button>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/auth.js"></script>
+  </body>
+</html>
