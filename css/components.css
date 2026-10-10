@@ -920,3 +920,91 @@
   border-color: #b9d8c6;
   color: #1f5a37;
 }
+
+/* Notice (moved from booking.css) */
+.notice {
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-4);
+  background: var(--sand);
+  border-radius: var(--r-md);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+.notice code {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-6);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+}
+.tab {
+  position: relative;
+  flex: none;
+  padding: var(--sp-3) 0;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color var(--t-fast);
+}
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--text);
+}
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--brand);
+}
+.tab__count {
+  margin-left: 0.4rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Modal dialog */
+.modal {
+  width: calc(100% - 2rem);
+  max-width: 26rem;
+  padding: var(--sp-6);
+  background: var(--surface);
+  color: var(--text);
+  border: 0;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2);
+}
+.modal::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+.modal__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.modal__text {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+/* Selected chip */
+.chip[aria-pressed="true"] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}

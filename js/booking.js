@@ -10,19 +10,7 @@
   };
 
   /* Bookings are kept in this browser only until a backend exists. */
-  const KEY = "sn-bookings";
-  const readBookings = () => {
-    try {
-      return JSON.parse(localStorage.getItem(KEY)) || [];
-    } catch {
-      return [];
-    }
-  };
-  const saveBooking = (b) => {
-    try {
-      localStorage.setItem(KEY, JSON.stringify([b, ...readBookings()]));
-    } catch {}
-  };
+  const { read: readBookings, add: saveBooking } = SN.bookings;
 
   const q = new URLSearchParams(location.search);
   const stored = readBookings().find((b) => b.ref === q.get("ref"));
@@ -344,35 +332,7 @@
     set("[data-c-card]", `Demo card ending ${b.last4}`);
     $("[data-c-link]").href = `property.html?id=${p.id}`;
     $("#confirm-title").focus();
-
-    $("[data-ics]").onclick = () => {
-      const day = (s) => s.replaceAll("-", "");
-      const stamp = `${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`;
-      const ics = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//StayNest//Booking//EN",
-        "BEGIN:VEVENT",
-        `UID:${b.ref}@staynest`,
-        `DTSTAMP:${stamp}`,
-        `DTSTART;VALUE=DATE:${day(b.checkin)}`,
-        `DTEND;VALUE=DATE:${day(b.checkout)}`,
-        `SUMMARY:Stay at ${p.title}`,
-        `LOCATION:${p.city}\\, ${p.country}`,
-        `DESCRIPTION:StayNest reservation ${b.ref}`,
-        "END:VEVENT",
-        "END:VCALENDAR",
-      ].join("\r\n");
-      const url = URL.createObjectURL(
-        new Blob([ics], { type: "text/calendar" }),
-      );
-      const a = Object.assign(document.createElement("a"), {
-        href: url,
-        download: `${b.ref}.ics`,
-      });
-      a.click();
-      URL.revokeObjectURL(url);
-    };
+    $("[data-ics]").onclick;
   }
 
   /* Init */

@@ -148,6 +148,21 @@ const searchHTML = `
   </button>
 </form>`;
 
+const DASH_NAV = [
+  { href: "trips.html", label: "Trips" },
+  { href: "saved.html", label: "Saved" },
+];
+const dashNavHTML = () => {
+  const here = location.pathname.split("/").pop() || "index.html";
+  return `<nav class="dash-nav" aria-label="Account"><ul role="list">${DASH_NAV.map(
+    (n) =>
+      `<li><a href="${n.href}"${n.href === here ? ' aria-current="page"' : ""}>${n.label}</a></li>`,
+  ).join("")}</ul></nav>`;
+};
+document
+  .querySelector('[data-component="dash-nav"]')
+  ?.insertAdjacentHTML("afterbegin", dashNavHTML());
+
 document.body.insertAdjacentHTML("afterbegin", SPRITE);
 const headerSlot = document.querySelector('[data-component="header"]');
 headerSlot?.insertAdjacentHTML("afterbegin", headerHTML);

@@ -1,0 +1,221 @@
+.dash {
+  padding-top: calc(var(--header-h) + var(--sp-7));
+  padding-bottom: var(--sp-9);
+}
+html.guarding .dash {
+  visibility: hidden;
+}
+.dash__head {
+  display: grid;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+}
+.dash__layout {
+  display: grid;
+  gap: var(--sp-6);
+}
+@media (min-width: 900px) {
+  .dash__layout {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: var(--sp-8);
+    align-items: start;
+  }
+}
+
+/* Account nav */
+.dash-nav ul {
+  display: flex;
+  gap: var(--sp-2);
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+}
+.dash-nav a {
+  display: block;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition:
+    background-color var(--t-fast),
+    color var(--t-fast);
+}
+.dash-nav a:hover {
+  background: var(--sand);
+  color: var(--text);
+}
+.dash-nav a[aria-current="page"] {
+  background: var(--text);
+  color: var(--bg);
+}
+@media (min-width: 900px) {
+  .dash-nav ul {
+    position: sticky;
+    top: calc(var(--header-h) + var(--sp-4));
+    flex-direction: column;
+  }
+}
+
+/* Trips */
+.trips {
+  display: grid;
+  gap: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+.trip {
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+@media (min-width: 700px) {
+  .trip {
+    grid-template-columns: 13rem 1fr;
+    gap: var(--sp-5);
+  }
+}
+.trip__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--sand);
+}
+.trip__body {
+  display: grid;
+  gap: var(--sp-3);
+  align-content: start;
+  min-width: 0;
+}
+.trip__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.trip__ref {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.trip__ref strong {
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.trip__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.trip__title a:hover {
+  color: var(--brand-text);
+}
+.trip__meta {
+  margin-top: -0.5rem;
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+.trip__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-4);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.trip__facts li + li::before {
+  content: "·";
+  margin-right: var(--sp-4);
+  color: var(--text-muted);
+}
+.trip__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.trip__more summary {
+  cursor: pointer;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+.trip__list {
+  display: grid;
+  gap: var(--sp-2);
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-xs);
+}
+.trip__list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-block: var(--sp-2);
+  border-bottom: 1px solid var(--border);
+}
+.trip__list dt {
+  color: var(--text-secondary);
+}
+.trip__list dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.status {
+  display: inline-flex;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.status--upcoming {
+  background: #eaf4ee;
+  border-color: #b9d8c6;
+  color: #1f5a37;
+}
+.status--current {
+  background: #fdf0e6;
+  border-color: #efc9ae;
+  color: #8a3b1c;
+}
+.status--past {
+  background: var(--sand);
+  color: var(--text-secondary);
+}
+.status--cancelled {
+  background: #fbeceb;
+  border-color: #e6b8b3;
+  color: #8f2a20;
+}
+
+/* Saved */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+.saved__count {
+  margin-bottom: var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.saved .card-grid li {
+  transition:
+    opacity var(--t-base),
+    transform var(--t-base);
+}
+.saved .card-grid li.is-leaving {
+  opacity: 0;
+  transform: scale(0.96);
+}

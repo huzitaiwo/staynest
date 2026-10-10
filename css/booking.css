@@ -134,18 +134,6 @@
 .span-2 {
   grid-column: 1 / -1;
 }
-.notice {
-  margin-bottom: var(--sp-5);
-  padding: var(--sp-4);
-  background: var(--sand);
-  border-radius: var(--r-md);
-  font-size: var(--fs-xs);
-  color: var(--text-secondary);
-}
-.notice code {
-  font-weight: 700;
-  color: var(--text);
-}
 .alert {
   margin-bottom: var(--sp-5);
 }
