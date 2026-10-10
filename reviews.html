@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Write a review — StayNest</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/reviews.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      );
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="review-page">
+      <div class="container container--narrow">
+        <a class="back-link" data-back href="trips.html"
+          ><svg class="icon" aria-hidden="true">
+            <use href="#i-chevron-left" /></svg
+          ><span>Back</span></a
+        >
+
+        <section data-form-wrap hidden>
+          <header class="review-page__head">
+            <p class="eyebrow" data-eyebrow></p>
+            <h1 class="h1" data-title></h1>
+            <p class="lead" data-lead></p>
+          </header>
+
+          <form class="review-form" data-form novalidate>
+            <div data-cats></div>
+
+            <div class="field">
+              <label class="field__label" for="r-text" data-text-label></label>
+              <textarea
+                class="input"
+                id="r-text"
+                name="text"
+                rows="6"
+                maxlength="1000"
+                aria-describedby="r-text-hint r-text-err"
+              ></textarea>
+              <p class="field__hint" id="r-text-hint">
+                <span data-count>0</span> / 1000 · at least 20 characters
+              </p>
+              <p class="field__error" id="r-text-err"></p>
+            </div>
+
+            <p class="notice" data-demo-note></p>
+            <button class="btn btn--primary" type="submit">
+              Submit review
+            </button>
+          </form>
+        </section>
+
+        <section class="empty" data-done hidden>
+          <span class="empty__icon" aria-hidden="true"
+            ><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg
+          ></span>
+          <h1 class="empty__title" tabindex="-1" data-done-title></h1>
+          <p class="empty__text" data-done-text></p>
+          <blockquote class="review-quote" data-done-quote hidden></blockquote>
+          <a class="btn btn--primary" data-done-link href="trips.html"
+            >Continue</a
+          >
+        </section>
+
+        <section class="empty" data-blocked hidden>
+          <span class="empty__icon" aria-hidden="true"
+            ><svg class="icon" aria-hidden="true">
+              <use href="#i-calendar" /></svg
+          ></span>
+          <h1 class="empty__title">Reviews open after check-out</h1>
+          <p class="empty__text">
+            Come back once the stay is over and you can leave your review.
+          </p>
+          <a class="btn btn--primary" data-blocked-link href="trips.html"
+            >Back to trips</a
+          >
+        </section>
+
+        <section class="empty" data-missing hidden>
+          <span class="empty__icon" aria-hidden="true"
+            ><svg class="icon" aria-hidden="true"><use href="#i-compass" /></svg
+          ></span>
+          <h1 class="empty__title">We couldn't find that stay</h1>
+          <p class="empty__text">Open the review link from your trips list.</p>
+          <a class="btn btn--primary" href="trips.html">Go to trips</a>
+        </section>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/host-data.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/review.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
