@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stay — StayNest</title>
+    <meta
+      name="description"
+      content="A considered place to stay on StayNest."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stay — StayNest" />
+    <meta property="og:image" content="assets/images/hero.jpg" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/property.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body class="has-reserve-bar">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="property">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Stays</a></li>
+            <li><a data-crumb-city href="search.html">City</a></li>
+            <li aria-current="page" data-crumb-title>Stay</li>
+          </ol>
+        </nav>
+
+        <div id="property" hidden>
+          <header class="p-head">
+            <div>
+              <p class="eyebrow" data-kicker></p>
+              <h1 class="h1" data-title></h1>
+              <p class="p-head__meta">
+                <a class="p-rating" href="#reviews"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-star" /></svg
+                  ><strong data-rating></strong><span data-review-count></span
+                ></a>
+                <span data-location></span>
+              </p>
+            </div>
+            <button
+              class="btn btn--outline btn--sm"
+              type="button"
+              data-save
+              aria-pressed="false"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-heart" /></svg
+              >Save
+            </button>
+          </header>
+
+          <section class="gallery" aria-label="Photos" data-gallery></section>
+
+          <div class="p-layout">
+            <div class="p-main">
+              <section aria-labelledby="facts-title">
+                <h2 class="p-title" id="facts-title" data-facts-title></h2>
+                <ul class="facts__list" role="list" data-facts></ul>
+                <ul class="highlights" role="list" data-highlights></ul>
+              </section>
+
+              <section aria-labelledby="about-title">
+                <h2 class="p-title" id="about-title">About this stay</h2>
+                <p class="p-about" data-about></p>
+              </section>
+
+              <section aria-labelledby="amenities-title">
+                <h2 class="p-title" id="amenities-title">
+                  What this place offers
+                </h2>
+                <ul class="amenities" role="list" data-amenities></ul>
+              </section>
+
+              <section aria-labelledby="host-title">
+                <h2 class="p-title" id="host-title">Your host</h2>
+                <div class="host-card">
+                  <div class="host-card__top">
+                    <span
+                      class="avatar"
+                      aria-hidden="true"
+                      data-host-initial
+                    ></span>
+                    <div>
+                      <p class="host-card__name" data-host-name></p>
+                      <p class="host-card__since" data-host-since></p>
+                    </div>
+                  </div>
+                  <ul class="host-card__stats" role="list">
+                    <li>
+                      <strong data-host-rating></strong><span>Host rating</span>
+                    </li>
+                    <li>
+                      <strong data-host-response></strong
+                      ><span>Response rate</span>
+                    </li>
+                    <li>
+                      <strong data-host-time></strong
+                      ><span>Typically replies</span>
+                    </li>
+                  </ul>
+                  <a
+                    class="btn btn--outline btn--sm host-card__cta"
+                    href="messages.html"
+                    >Contact host</a
+                  >
+                </div>
+              </section>
+
+              <section id="reviews" aria-labelledby="reviews-title">
+                <h2 class="p-title" id="reviews-title">Reviews</h2>
+                <div class="rv-summary">
+                  <div>
+                    <p class="rv-score" data-rv-score></p>
+                    <p class="rv-count" data-rv-count></p>
+                  </div>
+                  <ul class="bars" role="list" data-bars></ul>
+                </div>
+                <div class="reviews" data-reviews></div>
+              </section>
+
+              <section aria-labelledby="location-title">
+                <h2 class="p-title" id="location-title">Where you'll be</h2>
+                <div
+                  class="map map--static"
+                  role="img"
+                  aria-label="Illustrative map showing the location of the stay"
+                >
+                  <div class="map__pins">
+                    <span
+                      class="pin"
+                      style="--x: 50; --y: 50"
+                      data-map-pin
+                    ></span>
+                  </div>
+                  <p class="map__caption">
+                    Illustrative map · exact address shared after booking
+                  </p>
+                </div>
+                <p class="p-about p-area" data-area></p>
+              </section>
+            </div>
+
+            <aside class="booking" id="booking" aria-label="Reserve this stay">
+              <form class="booking__card" data-booking novalidate>
+                <p class="booking__price">
+                  <strong data-price></strong> <span>night</span>
+                </p>
+                <div class="booking__fields">
+                  <label class="bf"
+                    ><span>Check in</span
+                    ><input class="input" type="date" id="b-in" name="checkin"
+                  /></label>
+                  <label class="bf"
+                    ><span>Check out</span
+                    ><input
+                      class="input"
+                      type="date"
+                      id="b-out"
+                      name="checkout"
+                  /></label>
+                  <label class="bf bf--full"
+                    ><span>Guests</span
+                    ><select class="input" id="b-guests" name="guests"></select
+                  ></label>
+                </div>
+                <p class="booking__error" role="alert" data-error hidden></p>
+                <button
+                  class="btn btn--primary booking__cta"
+                  type="submit"
+                  data-reserve
+                  disabled
+                >
+                  Add dates to reserve
+                </button>
+                <p class="booking__hint">You won't be charged yet.</p>
+                <dl class="breakdown" data-breakdown hidden>
+                  <div>
+                    <dt data-l-nights></dt>
+                    <dd data-v-nights></dd>
+                  </div>
+                  <div>
+                    <dt>Cleaning fee</dt>
+                    <dd data-v-cleaning></dd>
+                  </div>
+                  <div>
+                    <dt>Service fee</dt>
+                    <dd data-v-service></dd>
+                  </div>
+                  <div>
+                    <dt>Taxes</dt>
+                    <dd data-v-tax></dd>
+                  </div>
+                  <div class="breakdown__total">
+                    <dt>Total (EUR)</dt>
+                    <dd data-v-total></dd>
+                  </div>
+                </dl>
+              </form>
+            </aside>
+          </div>
+
+          <section class="similar" aria-labelledby="similar-title">
+            <h2 class="p-title" id="similar-title">More places like this</h2>
+            <ul class="card-grid" role="list" data-similar></ul>
+          </section>
+        </div>
+
+        <div class="empty" id="not-found" hidden>
+          <span class="empty__icon" aria-hidden="true"
+            ><svg class="icon" aria-hidden="true"><use href="#i-compass" /></svg
+          ></span>
+          <h1 class="empty__title">We couldn't find that stay</h1>
+          <p class="empty__text">
+            It may have been removed, or the link might be incomplete.
+          </p>
+          <a class="btn btn--primary" href="search.html">Browse all stays</a>
+        </div>
+      </div>
+
+      <div class="reserve-bar" data-reserve-bar hidden>
+        <p class="reserve-bar__price">
+          <strong data-bar-price></strong> <span>night</span>
+        </p>
+        <a class="btn btn--primary btn--sm" href="#booking">Reserve</a>
+      </div>
+    </main>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Photo gallery">
+      <button
+        class="icon-btn lightbox__close"
+        type="button"
+        data-lb-close
+        aria-label="Close gallery"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+      </button>
+      <button
+        class="icon-btn lightbox__nav lightbox__nav--prev"
+        type="button"
+        data-lb-prev
+        aria-label="Previous photo"
+      >
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-chevron-left" />
+        </svg>
+      </button>
+      <figure class="lightbox__fig">
+        <img data-lb-img alt="" />
+        <figcaption data-lb-cap aria-live="polite"></figcaption>
+      </figure>
+      <button
+        class="icon-btn lightbox__nav lightbox__nav--next"
+        type="button"
+        data-lb-next
+        aria-label="Next photo"
+      >
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-chevron-right" />
+        </svg>
+      </button>
+    </dialog>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/property.js"></script>
+  </body>
+</html>
