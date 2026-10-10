@@ -5,12 +5,14 @@
   SN.fmt = (n) => `€${n.toLocaleString("en-GB")}`;
   SN.nights = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
 
-  SN.validateStay = (a, b) => {
-    const today = new Date().toISOString().split("T")[0];
+  SN.validateStay = (a, b, id) => {
+    const today = new Date().toLocaleDateString("en-CA");
     const n = SN.nights(a, b);
     if (a < today) return "Check-in can't be in the past.";
     if (n < 1) return "Check-out must be after check-in.";
     if (n > 30) return "Stays are limited to 30 nights.";
+    if (id && SN.availability?.conflict(id, a, b))
+      return "Those dates aren't available. Try different dates.";
     return "";
   };
 
