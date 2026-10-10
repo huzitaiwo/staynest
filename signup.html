@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create your account — StayNest</title>
+    <meta
+      name="description"
+      content="Create a StayNest account to save places, book stays or start hosting."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="auth">
+      <aside class="auth__art">
+        <img src="assets/images/hero.jpg" alt="" width="1200" height="1600" />
+        <p class="auth__quote">
+          A more thoughtful way to find the corners of the world.
+        </p>
+      </aside>
+
+      <section class="auth__panel">
+        <div class="auth__card" data-view="signup">
+          <div>
+            <p class="eyebrow">Join StayNest</p>
+            <h1 class="h1 auth__title">Create your account</h1>
+            <p class="auth__lead">
+              Save places you love, book with clear prices, or share your own.
+            </p>
+          </div>
+
+          <div
+            class="alert alert--error"
+            role="alert"
+            data-form-error
+            hidden
+          ></div>
+
+          <form class="auth__form" data-auth="signup" novalidate>
+            <fieldset class="choice-group">
+              <legend>I'm joining to</legend>
+              <label class="choice">
+                <input type="radio" name="role" value="guest" checked />
+                <span class="choice__body"
+                  ><strong>Find a stay</strong
+                  ><span>Search, save and book places.</span></span
+                >
+              </label>
+              <label class="choice">
+                <input type="radio" name="role" value="host" />
+                <span class="choice__body"
+                  ><strong>Host my place</strong
+                  ><span>List a home and welcome guests.</span></span
+                >
+              </label>
+            </fieldset>
+
+            <div class="field">
+              <label for="su-name">Full name</label>
+              <input
+                class="input"
+                id="su-name"
+                type="text"
+                autocomplete="name"
+                data-rule="name"
+                aria-describedby="su-name-err"
+              />
+              <p class="field__error" id="su-name-err"></p>
+            </div>
+            <div class="field">
+              <label for="su-email">Email</label>
+              <input
+                class="input"
+                id="su-email"
+                type="email"
+                autocomplete="email"
+                data-rule="email"
+                aria-describedby="su-email-err"
+              />
+              <p class="field__error" id="su-email-err"></p>
+            </div>
+            <div class="field">
+              <label for="su-password">Password</label>
+              <div class="input-wrap">
+                <input
+                  class="input"
+                  id="su-password"
+                  type="password"
+                  autocomplete="new-password"
+                  data-rule="password"
+                  aria-describedby="su-password-hint su-password-err"
+                />
+                <button
+                  class="input-wrap__btn"
+                  type="button"
+                  data-toggle-password
+                  aria-controls="su-password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p class="field__hint" id="su-password-hint">
+                At least 8 characters, with a letter and a number.
+              </p>
+              <p class="field__error" id="su-password-err"></p>
+            </div>
+            <div class="field">
+              <label class="check"
+                ><input
+                  id="su-terms"
+                  type="checkbox"
+                  data-rule="terms"
+                  aria-describedby="su-terms-err"
+                />
+                I agree to the Terms and Privacy Policy.</label
+              >
+              <p class="field__error" id="su-terms-err"></p>
+            </div>
+            <button
+              class="btn btn--primary btn--block"
+              type="submit"
+              data-submit
+            >
+              Create account
+            </button>
+          </form>
+
+          <p class="auth__switch">
+            Already have an account?
+            <a class="link-btn" data-keep-next href="login.html">Sign in</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/auth.js"></script>
+  </body>
+</html>
