@@ -12,8 +12,8 @@
   SN.fees = { cleaningRate: 0.12, serviceRate: 0.1, taxRate: 0.07 };
 
   const gallery = (id) =>
-    [id, `${id}-2`, `${id}-3`, `${id}-4`, `${id}-5`].map(
-      (n) => `assets/images/${n}.jpg`,
+    [id, `${id}`, `${id}`, `${id}`, `${id}`].map(
+      (n) => `assets/images/${n}.webp`,
     );
   SN.galleries = {
     "casa-alma": gallery("casa-alma"),
