@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search stays — StayNest</title>
+    <meta
+      name="description"
+      content="Search characterful places to stay, filter by price, type and amenities, and compare them on a map."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Search stays — StayNest" />
+    <meta property="og:image" content="assets/images/hero.jpg" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#results-region">Skip to results</a>
+    <div data-component="header" data-solid></div>
+
+    <main>
+      <section class="page-head" aria-labelledby="page-title">
+        <div class="container page-head__inner">
+          <p class="eyebrow">Find a stay</p>
+          <h1 id="page-title" class="h1">All stays</h1>
+          <div class="search-slot" data-component="search"></div>
+        </div>
+      </section>
+
+      <section class="results" id="results-region" aria-label="Search results">
+        <div class="container">
+          <div class="toolbar">
+            <p
+              class="toolbar__count"
+              id="count"
+              role="status"
+              aria-live="polite"
+            >
+              &nbsp;
+            </p>
+            <div class="toolbar__controls">
+              <button
+                class="btn btn--outline btn--sm filters-open"
+                type="button"
+                data-filters-open
+                aria-expanded="false"
+                aria-controls="filters"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-sliders" /></svg
+                >Filters
+                <span class="badge-count" data-filter-badge hidden></span>
+              </button>
+              <label class="visually-hidden" for="sort">Sort by</label>
+              <select class="select" id="sort">
+                <option value="recommended">Recommended</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="rating">Highest rated</option>
+                <option value="reviews">Most reviewed</option>
+              </select>
+              <div class="seg" role="group" aria-label="Results view">
+                <button type="button" data-view-btn="list" aria-pressed="true">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-grid" /></svg
+                  >List
+                </button>
+                <button type="button" data-view-btn="map" aria-pressed="false">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-map" /></svg
+                  >Map
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="layout" data-view="list">
+            <div class="scrim" data-scrim></div>
+            <aside class="filters" id="filters" aria-label="Filters">
+              <div class="filters__head">
+                <h2 class="filters__title">Filters</h2>
+                <button class="link-btn" type="button" data-clear-filters>
+                  Clear all
+                </button>
+                <button
+                  class="icon-btn filters__close"
+                  type="button"
+                  data-filters-close
+                  aria-label="Close filters"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-close" />
+                  </svg>
+                </button>
+              </div>
+
+              <form class="filters__body" id="filter-form" novalidate>
+                <fieldset class="filter">
+                  <legend>Price per night</legend>
+                  <div class="price-row">
+                    <label class="num"
+                      ><span>Min (€)</span
+                      ><input
+                        class="input"
+                        type="number"
+                        name="min"
+                        min="0"
+                        inputmode="numeric"
+                        placeholder="0"
+                    /></label>
+                    <label class="num"
+                      ><span>Max (€)</span
+                      ><input
+                        class="input"
+                        type="number"
+                        name="max"
+                        min="0"
+                        inputmode="numeric"
+                        placeholder="Any"
+                    /></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="filter">
+                  <legend>Property type</legend>
+                  <div data-type-list></div>
+                </fieldset>
+
+                <fieldset class="filter">
+                  <legend>Bedrooms</legend>
+                  <label class="visually-hidden" for="f-beds"
+                    >Minimum bedrooms</label
+                  >
+                  <select class="input" id="f-beds" name="beds">
+                    <option value="">Any</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                  </select>
+                </fieldset>
+
+                <fieldset class="filter">
+                  <legend>Guest rating</legend>
+                  <label class="check"
+                    ><input type="radio" name="rating" value="" checked />
+                    Any</label
+                  >
+                  <label class="check"
+                    ><input type="radio" name="rating" value="4.5" /> 4.5 and
+                    up</label
+                  >
+                  <label class="check"
+                    ><input type="radio" name="rating" value="4.8" /> 4.8 and
+                    up</label
+                  >
+                  <label class="check"
+                    ><input type="radio" name="rating" value="4.9" /> 4.9 and
+                    up</label
+                  >
+                </fieldset>
+
+                <fieldset class="filter">
+                  <legend>Booking and access</legend>
+                  <label class="check"
+                    ><input type="checkbox" name="instant" value="1" /> Instant
+                    booking</label
+                  >
+                  <label class="check"
+                    ><input type="checkbox" name="access" value="1" /> Step-free
+                    access</label
+                  >
+                </fieldset>
+
+                <fieldset class="filter">
+                  <legend>Amenities</legend>
+                  <div data-amenity-list></div>
+                </fieldset>
+              </form>
+
+              <div class="filters__foot">
+                <button
+                  class="btn btn--primary"
+                  type="button"
+                  data-filters-close
+                  data-show-btn
+                >
+                  Show stays
+                </button>
+              </div>
+            </aside>
+
+            <div class="results__main">
+              <div class="active" data-chips></div>
+
+              <ul
+                class="card-grid card-grid--results"
+                id="results"
+                aria-busy="true"
+              >
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+                <li class="card card--skeleton" aria-hidden="true">
+                  <div class="card__media skeleton"></div>
+                  <div class="card__body">
+                    <span class="skeleton skeleton--line"></span
+                    ><span
+                      class="skeleton skeleton--line skeleton--short"
+                    ></span>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="empty" data-empty hidden>
+                <span class="empty__icon" aria-hidden="true"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-compass" /></svg
+                ></span>
+                <h2 class="empty__title">No stays match just yet</h2>
+                <p class="empty__text">
+                  Try a different destination, widen your price range, or remove
+                  a filter or two.
+                </p>
+                <button class="btn btn--primary" type="button" data-reset-all>
+                  Clear everything and start again
+                </button>
+              </div>
+
+              <div class="more" data-more hidden>
+                <p class="muted-text" data-more-text></p>
+                <button class="btn btn--outline" type="button" data-more-btn>
+                  Show more stays
+                </button>
+              </div>
+            </div>
+
+            <aside class="map" aria-label="Map of results">
+              <div
+                class="map__pins"
+                data-pins
+                role="group"
+                aria-label="Stay locations"
+              ></div>
+              <p class="map__caption">
+                Illustrative map · live map provider not connected
+              </p>
+              <div class="map__preview" data-preview></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+  </body>
+</html>
