@@ -12,20 +12,21 @@
       .slice(0, 10);
 
   // Every stay this host manages: the built-in examples plus their own listings
-  L.hosted = () => [
-    ...SN.samples.map((p) => ({
-      id: p.id,
-      p,
-      status: L.statusOf(p.id),
-      sample: true,
-    })),
-    ...L.mine().map((l) => ({
-      id: l.id,
-      p: SN.toProperty(l),
-      status: l.status || "draft",
-      sample: false,
-    })),
-  ];
+  if (L)
+    L.hosted = () => [
+      ...SN.samples.map((p) => ({
+        id: p.id,
+        p,
+        status: L.statusOf(p.id),
+        sample: true,
+      })),
+      ...L.mine().map((l) => ({
+        id: l.id,
+        p: SN.toProperty(l),
+        status: l.status || "draft",
+        sample: false,
+      })),
+    ];
 
   const read = () => {
     try {

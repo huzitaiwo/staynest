@@ -94,7 +94,7 @@
   function renderSummary() {
     const problem =
       state.checkin && state.checkout
-        ? SN.validateStay(state.checkin, state.checkout)
+        ? SN.validateStay(state.checkin, state.checkout, p.id)
         : "incomplete";
     const bd = $("[data-s-breakdown]");
     set("[data-s-guests]", plural(state.guests, "guest"));
@@ -125,7 +125,7 @@
     const msg =
       !state.checkin || !state.checkout
         ? "Choose your check-in and check-out dates."
-        : SN.validateStay(state.checkin, state.checkout);
+        : SN.validateStay(state.checkin, state.checkout, p.id);
     datesErr.textContent = msg;
     [inEl, outEl].forEach((el) =>
       el.setAttribute("aria-invalid", String(Boolean(msg))),
@@ -145,7 +145,7 @@
         datesErr.textContent &&
         state.checkin &&
         state.checkout &&
-        !SN.validateStay(state.checkin, state.checkout)
+        !SN.validateStay(state.checkin, state.checkout, p.id)
       ) {
         datesErr.textContent = "";
         [inEl, outEl].forEach((x) => x.setAttribute("aria-invalid", "false"));

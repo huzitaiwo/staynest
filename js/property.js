@@ -217,7 +217,7 @@
     cta.textContent = "Add dates to reserve";
     if (!inEl.value || !outEl.value) return;
 
-    const problem = SN.validateStay(inEl.value, outEl.value);
+    const problem = SN.validateStay(inEl.value, outEl.value, p.id);
     if (problem) {
       errEl.textContent = problem;
       errEl.hidden = false;
