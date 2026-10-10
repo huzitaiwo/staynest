@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calendar · StayNest hosting</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      );
+    </script>
+  </head>
+  <body data-role="host">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head dash__head--row">
+          <div>
+            <p class="eyebrow">Hosting</p>
+            <h1 class="h1">Calendar</h1>
+          </div>
+          <label class="field field--inline">
+            <span class="visually-hidden">Listing</span>
+            <select class="select" data-listing></select>
+          </label>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="host-nav"></div>
+
+          <div class="dash__content">
+            <p class="notice">
+              Select a date to block or reopen it. Blocked dates are saved in
+              this browser. Booked nights come from reservations and can't be
+              changed here.
+            </p>
+
+            <section class="cal" aria-labelledby="cal-title">
+              <div class="cal__head">
+                <button
+                  class="icon-btn"
+                  type="button"
+                  data-prev
+                  aria-label="Previous month"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron-left" />
+                  </svg>
+                </button>
+                <h2 class="cal__title" id="cal-title" aria-live="polite"></h2>
+                <button
+                  class="icon-btn"
+                  type="button"
+                  data-next
+                  aria-label="Next month"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron-right" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="cal__grid cal__grid--dow" aria-hidden="true">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span
+                ><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              <div
+                class="cal__grid"
+                data-grid
+                role="group"
+                aria-labelledby="cal-title"
+              ></div>
+
+              <ul class="cal__legend" role="list">
+                <li><span class="cal__key cal__key--open"></span>Available</li>
+                <li><span class="cal__key cal__key--booked"></span>Booked</li>
+                <li><span class="cal__key cal__key--blocked"></span>Blocked</li>
+              </ul>
+              <p class="cal__summary" data-summary></p>
+            </section>
+
+            <section class="dash-section" aria-labelledby="range-title">
+              <h2 class="p-title" id="range-title">Block a range</h2>
+              <form class="range-form" data-range novalidate>
+                <label class="field"
+                  ><span class="field__label">From</span
+                  ><input class="input" type="date" name="from" required
+                /></label>
+                <label class="field"
+                  ><span class="field__label">To (included)</span
+                  ><input class="input" type="date" name="to" required
+                /></label>
+                <div class="range-form__actions">
+                  <button
+                    class="btn btn--primary btn--sm"
+                    type="submit"
+                    value="block"
+                  >
+                    Block dates
+                  </button>
+                  <button
+                    class="btn btn--outline btn--sm"
+                    type="submit"
+                    value="open"
+                  >
+                    Reopen dates
+                  </button>
+                </div>
+                <p class="field__error" data-range-err role="alert" hidden></p>
+              </form>
+            </section>
+
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/host-data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hosting-calendar.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
