@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile — StayNest</title>
+    <meta
+      name="description"
+      content="Manage your StayNest profile, notifications and account."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head">
+          <p class="eyebrow" data-greeting>Your account</p>
+          <h1 class="h1">Profile</h1>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="dash-nav"></div>
+
+          <div class="dash__content">
+            <div class="profile__top">
+              <span class="avatar avatar--lg" aria-hidden="true" data-avatar
+                >?</span
+              >
+              <div>
+                <p class="profile__name" data-name>Your name</p>
+                <p class="profile__role" data-role>Guest account</p>
+              </div>
+            </div>
+
+            <form class="panel-card" data-profile-form novalidate>
+              <h2 class="p-title">Personal information</h2>
+              <div class="form-grid form-grid--2">
+                <div class="field span-2">
+                  <label for="pf-name">Full name</label>
+                  <input
+                    class="input"
+                    id="pf-name"
+                    type="text"
+                    autocomplete="name"
+                    data-rule="name"
+                    aria-describedby="pf-name-err"
+                  />
+                  <p class="field__error" id="pf-name-err"></p>
+                </div>
+                <div class="field span-2">
+                  <label for="pf-email">Email</label>
+                  <input
+                    class="input"
+                    id="pf-email"
+                    type="email"
+                    readonly
+                    aria-describedby="pf-email-hint"
+                  />
+                  <p class="field__hint" id="pf-email-hint">
+                    Your sign-in email can't be changed here yet.
+                  </p>
+                </div>
+                <div class="field">
+                  <label for="pf-phone"
+                    >Phone <span class="optional">(optional)</span></label
+                  >
+                  <input
+                    class="input"
+                    id="pf-phone"
+                    type="tel"
+                    autocomplete="tel"
+                    data-rule="phone"
+                    aria-describedby="pf-phone-err"
+                  />
+                  <p class="field__error" id="pf-phone-err"></p>
+                </div>
+                <div class="field">
+                  <label for="pf-city"
+                    >Home city <span class="optional">(optional)</span></label
+                  >
+                  <input
+                    class="input"
+                    id="pf-city"
+                    type="text"
+                    autocomplete="address-level2"
+                    maxlength="60"
+                  />
+                </div>
+              </div>
+
+              <h2 class="p-title">Notifications</h2>
+              <div class="stack">
+                <label class="check"
+                  ><input type="checkbox" id="pf-remind" /> Trip reminders
+                  before check-in</label
+                >
+                <label class="check"
+                  ><input type="checkbox" id="pf-news" /> New places and
+                  occasional offers</label
+                >
+              </div>
+
+              <div
+                class="alert alert--error"
+                role="alert"
+                data-err
+                hidden
+              ></div>
+              <div
+                class="alert alert--success"
+                role="status"
+                data-ok
+                hidden
+              ></div>
+              <div class="profile__actions">
+                <button
+                  class="btn btn--primary"
+                  type="submit"
+                  data-save-profile
+                >
+                  Save changes
+                </button>
+              </div>
+            </form>
+
+            <section class="panel-card" aria-labelledby="acct-title">
+              <h2 class="p-title" id="acct-title">Account</h2>
+              <dl class="profile__rows">
+                <div>
+                  <dt>Account type</dt>
+                  <dd data-role-row>Guest</dd>
+                </div>
+                <div>
+                  <dt>Password</dt>
+                  <dd>••••••••</dd>
+                </div>
+              </dl>
+              <div
+                class="alert alert--error"
+                role="alert"
+                data-acct-err
+                hidden
+              ></div>
+              <div
+                class="alert alert--success"
+                role="status"
+                data-acct-ok
+                hidden
+              ></div>
+              <div class="profile__actions">
+                <button
+                  class="btn btn--outline btn--sm"
+                  type="button"
+                  data-reset
+                >
+                  Change password
+                </button>
+                <button
+                  class="btn btn--outline btn--sm"
+                  type="button"
+                  data-signout-btn
+                >
+                  Sign out
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+    <script type="module" src="js/account.js"></script>
+  </body>
+</html>
