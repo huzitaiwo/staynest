@@ -1,8 +1,8 @@
-export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+const firebaseConfig = {
+  apiKey: "AIzaSyA-U_5edqgUHm-kACn73EyWL0S0nd2drLY",
+  authDomain: "staynest-2a826.firebaseapp.com",
+  projectId: "staynest-2a826",
+  storageBucket: "staynest-2a826.firebasestorage.app",
+  messagingSenderId: "597345016817",
+  appId: "1:597345016817:web:b261ce7a5bc2f487fd0250",
 };
