@@ -79,7 +79,8 @@
   transition: background-color var(--t-base) var(--ease);
 }
 .site-header.is-scrolled .site-header__pill,
-.site-header.is-open .site-header__pill {
+.site-header.is-open .site-header__pill,
+.site-header.is-solid .site-header__pill {
   background: rgb(30 25 21 / 0.92);
 }
 

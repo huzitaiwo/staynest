@@ -15,6 +15,10 @@ const SPRITE = `
   <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
   <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
   <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M3 6h10M19 6h2M3 12h4M13 12h8M3 18h13M20 18h1"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2Z"/><path d="M9 4v14M15 6v14"/></symbol>
 </svg>`;
 
 const icon = (name, cls = "") =>
@@ -95,10 +99,60 @@ const footerHTML = `
   </div>
 </footer>`;
 
+const searchHTML = `
+<form class="search" role="search" aria-label="Search stays" action="search.html" novalidate>
+  <div class="search__field search__field--where">
+    ${icon("pin")}
+    <div class="search__control">
+      <label for="s-where">Where</label>
+      <input id="s-where" name="where" type="text" placeholder="Search destinations" autocomplete="off">
+    </div>
+  </div>
+  <div class="search__field">
+    ${icon("calendar")}
+    <div class="search__control">
+      <label for="s-in">Check in</label>
+      <input id="s-in" name="checkin" type="date" required>
+      <span class="search__ph" aria-hidden="true">Add dates</span>
+    </div>
+  </div>
+  <div class="search__field">
+    ${icon("calendar")}
+    <div class="search__control">
+      <label for="s-out">Check out</label>
+      <input id="s-out" name="checkout" type="date" required>
+      <span class="search__ph" aria-hidden="true">Add dates</span>
+    </div>
+  </div>
+  <div class="search__field">
+    ${icon("user")}
+    <div class="search__control">
+      <label for="s-guests">Guests</label>
+      <select id="s-guests" name="guests" required>
+        <option value="" selected>Add guests</option>
+        <option value="1">1 guest</option>
+        <option value="2">2 guests</option>
+        <option value="3">3 guests</option>
+        <option value="4">4 guests</option>
+        <option value="5">5 guests</option>
+        <option value="6">6+ guests</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn--primary search__submit" type="submit">
+    ${icon("search")}
+    <span>Search<span class="search__more"> stays</span></span>
+  </button>
+</form>`;
+
 document.body.insertAdjacentHTML("afterbegin", SPRITE);
+const headerSlot = document.querySelector('[data-component="header"]');
+headerSlot?.insertAdjacentHTML("afterbegin", headerHTML);
+if (headerSlot?.hasAttribute("data-solid"))
+  headerSlot.querySelector(".site-header")?.classList.add("is-solid");
 document
-  .querySelector('[data-component="header"]')
-  ?.insertAdjacentHTML("afterbegin", headerHTML);
+  .querySelector('[data-component="search"]')
+  ?.insertAdjacentHTML("afterbegin", searchHTML);
 document
   .querySelector('[data-component="footer"]')
   ?.insertAdjacentHTML("afterbegin", footerHTML);

@@ -65,68 +65,7 @@
             trip feel like yours.
           </p>
 
-          <form
-            class="search"
-            role="search"
-            aria-label="Search stays"
-            action="search.html"
-            novalidate
-          >
-            <div class="search__field search__field--where">
-              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
-              <div class="search__control">
-                <label for="s-where">Where</label>
-                <input
-                  id="s-where"
-                  name="where"
-                  type="text"
-                  placeholder="Search destinations"
-                  autocomplete="off"
-                />
-              </div>
-            </div>
-            <div class="search__field">
-              <svg class="icon" aria-hidden="true">
-                <use href="#i-calendar" />
-              </svg>
-              <div class="search__control">
-                <label for="s-in">Check in</label>
-                <input id="s-in" name="checkin" type="date" required />
-                <span class="search__ph" aria-hidden="true">Add dates</span>
-              </div>
-            </div>
-            <div class="search__field">
-              <svg class="icon" aria-hidden="true">
-                <use href="#i-calendar" />
-              </svg>
-              <div class="search__control">
-                <label for="s-out">Check out</label>
-                <input id="s-out" name="checkout" type="date" required />
-                <span class="search__ph" aria-hidden="true">Add dates</span>
-              </div>
-            </div>
-            <div class="search__field">
-              <svg class="icon" aria-hidden="true"><use href="#i-user" /></svg>
-              <div class="search__control">
-                <label for="s-guests">Guests</label>
-                <select id="s-guests" name="guests" required>
-                  <option value="" selected>Add guests</option>
-                  <option value="1">1 guest</option>
-                  <option value="2">2 guests</option>
-                  <option value="3">3 guests</option>
-                  <option value="4">4 guests</option>
-                  <option value="5">5 guests</option>
-                  <option value="6">6+ guests</option>
-                </select>
-              </div>
-            </div>
-            <button class="btn btn--primary search__submit" type="submit">
-              <svg class="icon" aria-hidden="true">
-                <use href="#i-search" />
-              </svg>
-              <span>Search<span class="search__more"> stays</span></span>
-            </button>
-          </form>
+          <div class="search-slot" data-component="search"></div>
 
           <a class="hero__cue" href="#edit"
             >Begin with the edit

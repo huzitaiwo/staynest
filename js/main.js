@@ -58,7 +58,8 @@ if ("IntersectionObserver" in window) {
   revealEls.forEach((el) => el.classList.add("is-visible"));
 }
 
-/* Save (heart) buttons, remembered in this browser */
+/* Save (heart) buttons, remembered in this browser. Works for cards added later. */
+window.StayNest = window.StayNest || {};
 const SAVED_KEY = "sn-saved";
 const readSaved = () => {
   try {
@@ -73,6 +74,26 @@ const writeSaved = (list) => {
   } catch {}
 };
 const saved = new Set(readSaved());
+
+window.StayNest.syncSaved = (root = document) =>
+  root
+    .querySelectorAll("[data-save]")
+    .forEach((btn) =>
+      btn.setAttribute("aria-pressed", String(saved.has(btn.dataset.save))),
+    );
+window.StayNest.syncSaved();
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-save]");
+  if (!btn) return;
+  const id = btn.dataset.save;
+  saved.has(id) ? saved.delete(id) : saved.add(id);
+  writeSaved([...saved]);
+  btn.setAttribute("aria-pressed", String(saved.has(id)));
+  btn.classList.remove("is-pop");
+  void btn.offsetWidth;
+  btn.classList.add("is-pop");
+});
 
 document.querySelectorAll("[data-save]").forEach((btn) => {
   const id = btn.dataset.save;
