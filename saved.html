@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Saved stays — StayNest</title>
+    <meta name="description" content="The places you've saved on StayNest." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      ); // failsafe
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head">
+          <p class="eyebrow" data-greeting>Your account</p>
+          <h1 class="h1">Saved stays</h1>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="dash-nav"></div>
+
+          <div class="dash__content saved">
+            <p class="notice">
+              Saved stays are kept in this browser for now. They will follow
+              your account once the backend is connected.
+            </p>
+
+            <div
+              class="chip-row"
+              role="group"
+              aria-label="Filter by destination"
+              data-chips
+              hidden
+            ></div>
+            <p class="saved__count" data-count></p>
+
+            <ul class="card-grid" role="list" data-grid></ul>
+
+            <div class="empty" data-empty hidden>
+              <span class="empty__icon" aria-hidden="true"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-heart" /></svg
+              ></span>
+              <h2 class="empty__title">No saved stays yet</h2>
+              <p class="empty__text">
+                Tap the heart on any place you like and it will wait for you
+                here.
+              </p>
+              <a class="btn btn--primary" href="search.html">Browse stays</a>
+            </div>
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/saved.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
