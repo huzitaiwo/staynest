@@ -123,7 +123,7 @@
     const trips = B.read()
       .map((b) => ({
         b,
-        p: SN.properties.find((x) => x.id === b.id),
+        p: SN.allProperties.find((x) => x.id === b.id),
         phase: B.phase(b),
       }))
       .filter((t) => t.p);
@@ -184,14 +184,14 @@
     const ics = e.target.closest("[data-ics]");
     if (ics) {
       const b = B.read().find((x) => x.ref === ics.dataset.ics);
-      const p = b && SN.properties.find((x) => x.id === b.id);
+      const p = b && SN.allProperties.find((x) => x.id === b.id);
       if (b && p) B.downloadICS(b, p);
       return;
     }
     const cancel = e.target.closest("[data-cancel]");
     if (cancel) {
       const b = B.read().find((x) => x.ref === cancel.dataset.cancel);
-      const p = b && SN.properties.find((x) => x.id === b.id);
+      const p = b && SN.allProperties.find((x) => x.id === b.id);
       if (!b || !p) return;
       pendingRef = b.ref;
       $("[data-cancel-text]").textContent =

@@ -3,6 +3,10 @@
   padding-bottom: var(--sp-9);
 }
 
+.p-rating span:empty {
+  display: none;
+}
+
 /* Breadcrumb */
 .crumbs ol {
   display: flex;

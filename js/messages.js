@@ -54,7 +54,7 @@
   const paramId = new URLSearchParams(location.search).get("property");
   if (
     paramId &&
-    SN.properties.some((p) => p.id === paramId) &&
+    SN.allProperties.some((p) => p.id === paramId) &&
     !threads.some((t) => t.propertyId === paramId)
   ) {
     draft = {

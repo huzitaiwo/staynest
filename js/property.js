@@ -36,9 +36,7 @@
   }
 
   /* Head, meta, crumbs */
-  const about =
-    SN.about[p.id] ||
-    `${p.title} is a ${p.type.toLowerCase()} in ${p.area}, ${p.city}.`;
+  const about = SN.about[p.id] || p.about;
   const heading = `${p.title}, ${p.city}`;
   document.title = `${heading} - StayNest`;
   $('meta[name="description"]').content = about;
@@ -52,8 +50,12 @@
 
   set("[data-kicker]", `${p.type} · ${p.area}`);
   set("[data-title]", p.title);
-  set("[data-rating]", p.rating.toFixed(2));
-  set("[data-review-count]", plural(p.reviews, "review"));
+  if (p.reviews) {
+    set("[data-rating]", p.rating.toFixed(2));
+    set("[data-review-count]", plural(p.reviews, "review"));
+  } else {
+    set("[data-rating]", "New");
+  }
   set("[data-location]", `${p.city}, ${p.country}`);
 
   const saveBtn = $("[data-save]");
@@ -62,7 +64,8 @@
   SN.syncSaved(view);
 
   /* Gallery + lightbox */
-  const imgs = SN.galleries?.[p.id] || [p.image];
+  const imgs =
+    SN.galleries?.[p.id] || (p.gallery?.length ? p.gallery : [p.image]);
   const shown = imgs.length >= 5 ? 5 : imgs.length === 4 ? 3 : imgs.length;
   $("[data-gallery]").innerHTML =
     `<ul class="gallery__grid gallery__grid--${shown}" role="list">${imgs
@@ -178,6 +181,8 @@
     )
     .join("");
 
+  if (!p.reviews) $("#reviews").hidden = true;
+
   /* Location */
   set("[data-map-pin]", fmt(p.price));
   set("[data-area]", `${p.area}, ${p.city}. ${SN.areas[p.city] || ""}`);
@@ -272,11 +277,15 @@
       addressCountry: p.country,
     },
     priceRange: `€${p.price} per night`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: p.rating,
-      reviewCount: p.reviews,
-    },
+    ...(p.reviews
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: p.rating,
+            reviewCount: p.reviews,
+          },
+        }
+      : {}),
   });
   document.head.appendChild(ld);
 

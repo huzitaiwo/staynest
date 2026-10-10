@@ -14,7 +14,7 @@
 
   const q = new URLSearchParams(location.search);
   const stored = readBookings().find((b) => b.ref === q.get("ref"));
-  const p = SN.properties.find(
+  const p = SN.allProperties.find(
     (x) => x.id === (stored ? stored.id : q.get("id")),
   );
 

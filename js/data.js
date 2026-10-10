@@ -279,4 +279,69 @@
       lng: 12.608,
     },
   ].map((p, i) => ({ ...p, rank: i }));
+
+  /* ---- Host-created listings ---- */
+  SN.keys = { listings: "sn-listings", state: "sn-listing-state" };
+  SN.samples = SN.properties; // the built-in example stays
+
+  const CITY_COORDS = {
+    comporta: [38.38, -8.78],
+    paris: [48.857, 2.352],
+    "cape town": [-33.925, 18.424],
+    marrakech: [31.63, -7.99],
+    kyoto: [35.012, 135.768],
+    copenhagen: [55.676, 12.568],
+    lagos: [37.103, -8.673],
+  };
+  const hash = (s) =>
+    [...String(s)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+
+  // Turns a saved listing into the shape the search, property and card code expects.
+  SN.toProperty = (l, rank = 0) => {
+    const base = CITY_COORDS[(l.city || "").trim().toLowerCase()];
+    const h = hash(l.id || l.title || "x");
+    const jitter = (n) => ((h >> n) % 100) / 5000; // keeps stays in one city from stacking on the map
+    return {
+      id: l.id,
+      title: l.title,
+      area: l.area || l.city,
+      city: l.city,
+      country: l.country,
+      type: l.type,
+      price: Number(l.price) || l.price,
+      rating: 0,
+      reviews: 0,
+      guests: l.guests,
+      bedrooms: l.bedrooms,
+      beds: l.beds,
+      baths: l.baths,
+      instant: !!l.instant,
+      stepFree: !!l.stepFree,
+      amenities: l.amenities || [],
+      note: l.note || "",
+      image: (l.photos && l.photos[0]) || "",
+      gallery: l.photos || [],
+      about: l.description || "",
+      lat: (base ? base[0] : 10 + (h % 40)) + jitter(3),
+      lng: (base ? base[1] : -20 + ((h >> 5) % 80)) + jitter(7),
+      rank,
+      mine: true,
+    };
+  };
+
+  SN.allProperties = SN.samples;
+  try {
+    const state = JSON.parse(localStorage.getItem(SN.keys.state)) || {};
+    const saved = (
+      JSON.parse(localStorage.getItem(SN.keys.listings)) || []
+    ).filter((l) => l.photos && l.photos.length);
+    const live = saved.filter((l) => l.status === "published");
+    SN.allProperties = [...SN.samples, ...saved.map((l) => SN.toProperty(l))];
+    SN.properties = [
+      ...SN.samples.filter((p) => state[p.id] !== "unpublished"),
+      ...live.map((l) => SN.toProperty(l)),
+    ].map((p, i) => ({ ...p, rank: i }));
+  } catch {
+    /* storage unavailable: keep the built-in stays */
+  }
 })();

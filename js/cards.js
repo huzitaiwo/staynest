@@ -17,7 +17,7 @@
       <div>
         <h3 class="card__title"><a class="card__link" href="property.html?id=${p.id}">${p.title}</a></h3>
         <p class="card__loc">${p.city}, ${p.country}</p>
-        <p class="card__meta">${icon("star")}<span>${p.rating.toFixed(2)} (${p.reviews})</span><span aria-hidden="true">·</span><span>Sleeps ${p.guests}</span></p>
+        <p class="card__meta">${p.reviews ? `${icon("star")}<span>${p.rating.toFixed(2)} (${p.reviews})</span><span aria-hidden="true">·</span>` : '<span>New</span><span aria-hidden="true">·</span>'}<span>Sleeps ${p.guests}</span></p>
       </div>
       <span class="card__go" aria-hidden="true">${icon("arrow-up-right")}</span>
     </div>
