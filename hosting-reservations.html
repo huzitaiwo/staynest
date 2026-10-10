@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reservations · StayNest hosting</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      );
+    </script>
+  </head>
+  <body data-role="host">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head dash__head--row">
+          <div>
+            <p class="eyebrow">Hosting</p>
+            <h1 class="h1">Reservations</h1>
+          </div>
+          <label class="field field--inline">
+            <span class="visually-hidden">Filter by listing</span>
+            <select class="select" data-listing-filter></select>
+          </label>
+        </header>
+
+        <div class="dash__layout">
+          <div data-component="host-nav"></div>
+
+          <div class="dash__content">
+            <div
+              class="chip-row"
+              role="group"
+              aria-label="Filter reservations"
+              data-filters
+            >
+              <button
+                class="chip"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              <button
+                class="chip"
+                type="button"
+                data-filter="upcoming"
+                aria-pressed="false"
+              >
+                Upcoming
+              </button>
+              <button
+                class="chip"
+                type="button"
+                data-filter="current"
+                aria-pressed="false"
+              >
+                Staying now
+              </button>
+              <button
+                class="chip"
+                type="button"
+                data-filter="past"
+                aria-pressed="false"
+              >
+                Past
+              </button>
+              <button
+                class="chip"
+                type="button"
+                data-filter="cancelled"
+                aria-pressed="false"
+              >
+                Cancelled
+              </button>
+            </div>
+
+            <ul class="rows rows--spaced" role="list" data-list></ul>
+
+            <div class="empty" data-empty hidden>
+              <span class="empty__icon" aria-hidden="true"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-calendar" /></svg
+              ></span>
+              <h2 class="empty__title">No reservations here</h2>
+              <p class="empty__text">
+                Reservations made on your stays appear in this list.
+              </p>
+            </div>
+
+            <p class="visually-hidden" role="status" data-live></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <dialog class="modal" id="cancel-dialog" aria-labelledby="cancel-title">
+      <form method="dialog">
+        <h2 class="modal__title" id="cancel-title">Cancel this reservation?</h2>
+        <p class="modal__text" data-cancel-text></p>
+        <div class="modal__actions">
+          <button class="btn btn--outline btn--sm" value="keep">Keep it</button>
+          <button class="btn btn--primary btn--sm" value="cancel">
+            Cancel reservation
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/host-data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hosting-reservations.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>
