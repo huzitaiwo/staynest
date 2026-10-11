@@ -23,9 +23,12 @@ export {
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 export {
+  getFirestore,
   doc,
   setDoc,
   getDoc,
   updateDoc,
   serverTimestamp,
+  collection,
+  getDocs,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";

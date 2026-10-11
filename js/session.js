@@ -20,18 +20,20 @@ async function addHostLink(user) {
   try {
     const snap = await getDoc(doc(db, "users", user.uid));
     const role = snap.exists() ? snap.data().role : "guest";
-    if (
-      (role !== "host" && role !== "admin") ||
-      auth.currentUser?.uid !== user.uid
-    )
-      return;
-    slots.desktop
-      .querySelector(".user-menu__panel a")
-      ?.insertAdjacentHTML("beforebegin", '<a href="hosting.html">Hosting</a>');
-    slots.mobile.insertAdjacentHTML(
-      "afterbegin",
-      '<a class="panel-signin" href="hosting.html">Hosting</a>',
-    );
+    if (auth.currentUser?.uid !== user.uid) return;
+    const links = [];
+    if (role === "host" || role === "admin")
+      links.push(["hosting.html", "Hosting"]);
+    if (role === "admin") links.push(["admin.html", "Admin"]);
+    links.forEach(([href, label]) => {
+      slots.desktop
+        .querySelector(".user-menu__panel a")
+        ?.insertAdjacentHTML("beforebegin", `<a href="${href}">${label}</a>`);
+      slots.mobile.insertAdjacentHTML(
+        "afterbegin",
+        `<a class="panel-signin" href="${href}">${label}</a>`,
+      );
+    });
   } catch (err) {
     console.error(err);
   }

@@ -22,7 +22,7 @@ try {
           console.error(err);
         }
         if (role !== need && role !== "admin") {
-          location.replace("host.html");
+          location.replace(need === "admin" ? "index.html" : "host.html");
           return;
         }
       }

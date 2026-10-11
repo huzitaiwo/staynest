@@ -177,6 +177,7 @@
       : [];
     const items = [
       ...real.map((r) => ({
+        id: r.id,
         rating: r.overall,
         date: r.date.slice(0, 7),
         text: escR(r.text),
@@ -198,6 +199,7 @@
           <p class="review__stars">${icon("star")}<span>${Number.isInteger(r.rating) ? r.rating : r.rating.toFixed(1)}</span></p>
         </header>
         <p class="review__text">${r.text}</p>
+        ${r.id ? `<button class="link-btn" type="button" data-report data-type="review" data-id="${r.id}" data-label="${r.text.slice(0, 60)}">Report</button>` : ""}
         ${r.reply ? `<div class="review__reply"><p class="review__reply-by">Reply from ${escR(SN.host.name)}</p><p>${escR(r.reply.text)}</p></div>` : ""}
       </article>`,
       )
@@ -205,6 +207,12 @@
   }
 
   if (!p.reviews) $("#reviews").hidden = true;
+
+  const reportBtn = $('[data-report][data-type="listing"]');
+  if (reportBtn) {
+    reportBtn.dataset.id = p.id;
+    reportBtn.dataset.label = p.title;
+  }
 
   /* Location */
   set("[data-map-pin]", fmt(p.price));
