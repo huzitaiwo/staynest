@@ -14,6 +14,12 @@ html.guarding .dash {
   display: grid;
   gap: var(--sp-6);
 }
+.dash .back-link {
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+}
+
 @media (min-width: 900px) {
   .dash__layout {
     grid-template-columns: 12rem minmax(0, 1fr);
