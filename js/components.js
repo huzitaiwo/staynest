@@ -177,9 +177,6 @@ document
 document
   .querySelector('[data-component="host-nav"]')
   ?.insertAdjacentHTML("afterbegin", navHTML(HOST_NAV, "Hosting"));
-document
-  .querySelector('[data-component="dash-nav"]')
-  ?.insertAdjacentHTML("afterbegin", dashNavHTML());
 
 document.body.insertAdjacentHTML("afterbegin", SPRITE);
 const headerSlot = document.querySelector('[data-component="header"]');
