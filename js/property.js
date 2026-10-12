@@ -64,20 +64,28 @@
   SN.syncSaved(view);
 
   /* Gallery + lightbox */
-  const imgs =
-    SN.galleries?.[p.id] || (p.gallery?.length ? p.gallery : [p.image]);
-  const shown = imgs.length >= 5 ? 5 : imgs.length === 4 ? 3 : imgs.length;
-  $("[data-gallery]").innerHTML =
-    `<ul class="gallery__grid gallery__grid--${shown}" role="list">${imgs
-      .slice(0, shown)
-      .map(
-        (src, i) =>
-          `<li class="gallery__item"><button class="gallery__btn" type="button" data-open="${i}" aria-label="Open photo ${i + 1} of ${imgs.length}"><img src="${src}" alt="${esc(p.title)}, photo ${i + 1}" width="1200" height="900"${i ? ' loading="lazy"' : ' fetchpriority="high"'}></button></li>`,
-      )
-      .join("")}</ul>` +
-    (imgs.length > 1
-      ? `<button class="btn btn--light btn--sm gallery__all" type="button" data-open="0">${icon("grid")}Show all photos (${imgs.length})</button>`
-      : "");
+  let imgs =
+    p.gallery && p.gallery.length
+      ? p.gallery
+      : SN.galleries?.[p.id] || [p.image];
+  const paintGallery = () => {
+    const shown = imgs.length >= 5 ? 5 : imgs.length === 4 ? 3 : imgs.length;
+    $("[data-gallery]").innerHTML =
+      `<ul class="gallery__grid gallery__grid--${shown}" role="list">${imgs
+        .slice(0, shown)
+        .map(
+          (src, i) =>
+            `<li class="gallery__item"><button class="gallery__btn" type="button" data-open="${i}" aria-label="Open photo ${i + 1} of ${imgs.length}"><img src="${src}" alt="${esc(p.title)}, photo ${i + 1}" width="1200" height="900"${i ? ' loading="lazy"' : ' fetchpriority="high"'}></button></li>`,
+        )
+        .join("")}</ul>` +
+      (imgs.length > 1
+        ? `<button class="btn btn--light btn--sm gallery__all" type="button" data-open="0">${icon("grid")}Show all photos (${imgs.length})</button>`
+        : "");
+    $$("[data-lb-prev], [data-lb-next]").forEach(
+      (b) => (b.hidden = imgs.length < 2),
+    );
+  };
+  paintGallery();
 
   const lb = $("#lightbox");
   const lbImg = $("[data-lb-img]");
@@ -108,6 +116,22 @@
   lb.addEventListener("click", (e) => {
     if (e.target === lb) lb.close();
   });
+
+  // Someone else's listing: only the cover is cached, so fetch the full gallery
+  if (p.remote) {
+    const loadFull = () =>
+      SN.cloudListings
+        .photos(p.id)
+        .then((list) => {
+          if (list.length > 1) {
+            imgs = list;
+            paintGallery();
+          }
+        })
+        .catch(console.error);
+    if (SN.cloudListings) loadFull();
+    else addEventListener("sn:listings-ready", loadFull, { once: true });
+  }
 
   /* Facts, highlights, about, amenities */
   set(

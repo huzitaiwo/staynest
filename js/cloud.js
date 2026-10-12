@@ -192,19 +192,9 @@ if (isConfigured && auth && db) {
   }
 
   const wipe = () => {
-    KEYS.forEach(drop);
+    [...KEYS, "sn-listings", "sn-cloud-listing-ids"].forEach(drop);
     drop(META);
   };
-  function reloadOnce() {
-    try {
-      const last = Number(sessionStorage.getItem("sn-cloud-reload") || 0);
-      if (Date.now() - last < 15000) return;
-      sessionStorage.setItem("sn-cloud-reload", String(Date.now()));
-    } catch {
-      return;
-    }
-    location.reload();
-  }
 
   onAuthStateChanged(auth, async (user) => {
     const last = get(LAST_UID);
@@ -226,4 +216,15 @@ if (isConfigured && auth && db) {
       console.error("Cloud sync failed", err);
     }
   });
+}
+
+export function reloadOnce() {
+  try {
+    const last = Number(sessionStorage.getItem("sn-cloud-reload") || 0);
+    if (Date.now() - last < 15000) return;
+    sessionStorage.setItem("sn-cloud-reload", String(Date.now()));
+  } catch {
+    return;
+  }
+  location.reload();
 }

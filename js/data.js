@@ -336,10 +336,29 @@
       JSON.parse(localStorage.getItem(SN.keys.listings)) || []
     ).filter((l) => l.photos && l.photos.length);
     const live = saved.filter((l) => l.status === "published");
-    SN.allProperties = [...SN.samples, ...saved.map((l) => SN.toProperty(l))];
+    // Published listings from other hosts (cached by cloud-listings.js)
+    const remote = (
+      JSON.parse(localStorage.getItem("sn-remote-listings")) || []
+    )
+      .filter(
+        (l) => l.photos && l.photos.length && !saved.some((s) => s.id === l.id),
+      )
+      .map((l) => ({
+        ...SN.toProperty(l),
+        mine: false,
+        remote: true,
+        ownerId: l.ownerId,
+      }));
+
+    SN.allProperties = [
+      ...SN.samples,
+      ...saved.map((l) => SN.toProperty(l)),
+      ...remote,
+    ];
     SN.properties = [
       ...SN.samples.filter((p) => state[p.id] !== "unpublished"),
       ...live.map((l) => SN.toProperty(l)),
+      ...remote,
     ].map((p, i) => ({ ...p, rank: i }));
   } catch {
     /* storage unavailable: keep the built-in stays */
