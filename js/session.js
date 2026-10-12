@@ -1,3 +1,4 @@
+import "./cloud.js";
 import {
   auth,
   db,
