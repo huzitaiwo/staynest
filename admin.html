@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — StayNest</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hosting.css" />
+    <link rel="stylesheet" href="css/reviews.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <script>
+      document.documentElement.classList.add("js", "guarding");
+      setTimeout(
+        () => document.documentElement.classList.remove("guarding"),
+        3000,
+      );
+    </script>
+  </head>
+  <body data-role="admin">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="dash">
+      <div class="container">
+        <header class="dash__head">
+          <p class="eyebrow">Admin</p>
+          <h1 class="h1">Console</h1>
+        </header>
+
+        <p class="notice" data-notice></p>
+
+        <div
+          class="tabs"
+          role="tablist"
+          aria-label="Admin sections"
+          data-tabs
+        ></div>
+        <div role="tabpanel" id="admin-panel" tabindex="0" data-panel></div>
+        <p class="visually-hidden" role="status" data-live></p>
+      </div>
+    </main>
+
+    <dialog class="modal" id="confirm-dialog" aria-labelledby="confirm-title">
+      <form method="dialog">
+        <h2 class="modal__title" id="confirm-title" data-confirm-title></h2>
+        <p class="modal__text" data-confirm-text></p>
+        <div class="modal__actions">
+          <button class="btn btn--outline btn--sm" value="keep">Cancel</button>
+          <button
+            class="btn btn--primary btn--sm"
+            value="confirm"
+            data-confirm-ok
+          >
+            Confirm
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/data-details.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/host-data.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/admin.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/guard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+/* Admin console — tables, tabs and chips are shared; only gaps are filled here */
+.data-table--text th,
+.data-table--text td {
+  text-align: left;
+  vertical-align: middle;
+}
+.data-table--text th[scope="row"] {
+  font-weight: 600;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.cell-clip {
+  display: inline-block;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+td .cell-clip {
+  max-width: 22rem;
+}
+.cell-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.select--sm {
+  min-height: 2.25rem;
+  padding: 0.25rem 2rem 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+[data-panel] {
+  outline: none;
+}
+[data-panel] .chip-row {
+  margin-bottom: var(--sp-4);
+}
