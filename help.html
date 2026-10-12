@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help centre — StayNest</title>
+    <meta
+      name="description"
+      content="Answers about booking, payments, hosting, reviews and your StayNest account."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="page">
+      <div class="container">
+        <header class="page-head">
+          <p class="eyebrow">Help centre</p>
+          <h1 class="h1">How can we help?</h1>
+          <p class="lead">
+            Quick answers about booking, paying, hosting and your account.
+          </p>
+        </header>
+
+        <p class="notice">
+          StayNest is a portfolio project. Bookings, messages and payments are
+          simulated and saved only in your browser.
+        </p>
+
+        <div class="faq-tools">
+          <label class="field">
+            <span class="visually-hidden">Search help</span>
+            <input
+              class="input"
+              type="search"
+              placeholder="Search help, e.g. cancel"
+              data-faq-search
+              autocomplete="off"
+            />
+          </label>
+          <div class="chip-row" role="group" aria-label="Topic" data-faq-topics>
+            <button
+              class="chip"
+              type="button"
+              data-topic="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+            <button
+              class="chip"
+              type="button"
+              data-topic="booking"
+              aria-pressed="false"
+            >
+              Booking
+            </button>
+            <button
+              class="chip"
+              type="button"
+              data-topic="payments"
+              aria-pressed="false"
+            >
+              Payments
+            </button>
+            <button
+              class="chip"
+              type="button"
+              data-topic="hosting"
+              aria-pressed="false"
+            >
+              Hosting
+            </button>
+            <button
+              class="chip"
+              type="button"
+              data-topic="reviews"
+              aria-pressed="false"
+            >
+              Reviews
+            </button>
+            <button
+              class="chip"
+              type="button"
+              data-topic="account"
+              aria-pressed="false"
+            >
+              Account
+            </button>
+          </div>
+        </div>
+
+        <div class="faq" data-faq>
+          <details class="faq__item" data-topic="booking">
+            <summary>How do I book a stay?</summary>
+            <div class="faq__body">
+              <p>
+                Open a stay, choose your dates and guests, then select
+                <strong>Reserve</strong>. Add your details, pay, and you'll get
+                a reservation reference. Every booking lives under
+                <a href="trips.html">Trips</a>.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="booking">
+            <summary>Can I cancel or change a trip?</summary>
+            <div class="faq__body">
+              <p>
+                You can cancel an upcoming trip from
+                <a href="trips.html">Trips</a>. Changing dates isn't supported
+                yet, so cancel and book again. In this demo no refund is
+                processed.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="booking">
+            <summary>How long can I stay?</summary>
+            <div class="faq__body">
+              <p>
+                A single booking can be up to 30 nights. Check-in can't be in
+                the past, and dates a host has blocked or that are already
+                booked can't be selected.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="payments">
+            <summary>How does payment work here?</summary>
+            <div class="faq__body">
+              <p>
+                Payment is simulated and no real money moves. Use card
+                <strong>4242 4242 4242 4242</strong> with any future expiry and
+                any 3-digit code to succeed, or
+                <strong>4000 0000 0000 0002</strong> to see a declined payment.
+                Card details are checked in your browser and never stored.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="payments">
+            <summary>What's included in the price?</summary>
+            <div class="faq__body">
+              <p>
+                Your total is the nightly rate multiplied by your nights, plus a
+                cleaning fee, a service fee and taxes. The full breakdown is
+                shown before you pay.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="hosting">
+            <summary>How do I become a host?</summary>
+            <div class="faq__body">
+              <p>
+                Sign in, choose <a href="host.html">Become a host</a>, then
+                create a listing. It takes nine short steps, and you can save a
+                draft and finish later. Nothing goes live until you publish.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="hosting">
+            <summary>How do I block dates?</summary>
+            <div class="faq__body">
+              <p>
+                Open <strong>Hosting → Calendar</strong>, pick a listing and
+                select any available date to block it. You can also block a
+                whole range at once. Booked nights can't be changed from there.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="hosting">
+            <summary>How are my earnings counted?</summary>
+            <div class="faq__body">
+              <p>
+                <strong>Hosting → Earnings</strong> adds up the nightly rate and
+                cleaning fee for each booking, in the month of check-in.
+                Completed stays and upcoming ones are shown separately.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="reviews">
+            <summary>Who can leave a review?</summary>
+            <div class="faq__body">
+              <p>
+                Guests can review a stay after check-out from
+                <strong>Trips → Past</strong>. Hosts can review their guests
+                from <strong>Hosting → Reservations</strong>. Each side can
+                leave one review per stay, and hosts can reply publicly to guest
+                reviews.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="reviews">
+            <summary>How do I report a listing or review?</summary>
+            <div class="faq__body">
+              <p>
+                Use the <strong>Report</strong> button on the stay page or
+                beside a review, choose a reason, and send it. Reports go to our
+                admin console for review.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="account">
+            <summary>How do I create an account?</summary>
+            <div class="faq__body">
+              <p>
+                <a href="signup.html">Sign up</a> with your name, email and a
+                password. New accounts start as guests, and you can become a
+                host at any time.
+              </p>
+            </div>
+          </details>
+          <details class="faq__item" data-topic="account">
+            <summary>Where is my information kept?</summary>
+            <div class="faq__body">
+              <p>
+                Account sign-in is handled by Firebase. Bookings, saved stays
+                and messages are kept in your own browser for now, so clearing
+                your site data removes them.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="faq-empty empty" data-faq-empty hidden>
+          <h2 class="empty__title">No answers match that</h2>
+          <p class="empty__text">
+            Try a different word, or pick another topic.
+          </p>
+        </div>
+        <p class="visually-hidden" role="status" data-live></p>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/help.js"></script>
+    <script type="module" src="js/session.js"></script>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+/* Content pages: help, trust, notes */
+.page {
+  padding-top: calc(var(--header-h) + var(--sp-8));
+  padding-bottom: var(--sp-9);
+}
+.page-head {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 44rem;
+  margin-bottom: var(--sp-7);
+}
+.page-section {
+  margin-top: var(--sp-8);
+}
+.page-section > .h2 {
+  margin-bottom: var(--sp-4);
+}
+.prose {
+  max-width: 44rem;
+  color: var(--text-secondary);
+}
+.prose p + p {
+  margin-top: var(--sp-4);
+}
+.prose a {
+  color: var(--brand-text, #a8452a);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Help: tools + accordion */
+.faq-tools {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 44rem;
+  margin-bottom: var(--sp-6);
+}
+.faq-empty {
+  max-width: 44rem;
+}
+.faq {
+  max-width: 44rem;
+  border-top: 1px solid var(--border);
+}
+.faq__item {
+  border-bottom: 1px solid var(--border);
+}
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+.faq__item summary::after {
+  content: "+";
+  flex: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--brand, #c85b3c);
+  transition: transform 0.25s;
+}
+.faq__item[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq__item summary:focus-visible {
+  outline: 2px solid var(--brand, #c85b3c);
+  outline-offset: 2px;
+}
+.faq__body {
+  padding: 0 0 var(--sp-5);
+  color: var(--text-secondary);
+  animation: faq-in 0.3s ease both;
+}
+.faq__body p + p {
+  margin-top: var(--sp-3);
+}
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Trust: principle cards */
+.principles {
+  display: grid;
+  gap: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 700px) {
+  .principles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-5);
+  }
+}
+.principle {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.principle__title {
+  font-family: var(--font-display, "Playfair Display", serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.principle p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm, 0.95rem);
+}
+
+/* Notes: expandable articles */
+.notes {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 52rem;
+  padding: 0;
+  list-style: none;
+}
+.note {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.note:hover,
+.note[open] {
+  border-color: var(--brand, #c85b3c);
+}
+.note summary {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  cursor: pointer;
+  list-style: none;
+}
+.note summary::-webkit-details-marker {
+  display: none;
+}
+.note summary:focus-visible {
+  outline: 2px solid var(--brand, #c85b3c);
+  outline-offset: 2px;
+  border-radius: var(--r-lg);
+}
+.note__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.note__title {
+  font-family: var(--font-display, "Playfair Display", serif);
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.note__excerpt {
+  color: var(--text-secondary);
+}
+.note__more {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--brand-text, #a8452a);
+}
+.note[open] .note__more {
+  display: none;
+}
+.note__body {
+  padding: 0 var(--sp-5) var(--sp-5);
+  color: var(--text-secondary);
+  animation: faq-in 0.3s ease both;
+}
+.note__body p + p {
+  margin-top: var(--sp-4);
+}
+
+/* Footer dispatch dialog */
+.dispatch-form {
+  display: grid;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__body,
+  .note__body {
+    animation: none;
+  }
+  .faq__item summary::after,
+  .note {
+    transition: none;
+  }
+}
