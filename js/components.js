@@ -70,6 +70,11 @@ const headerHTML = `
   </div>
 </header>`;
 
+const SOCIAL = {
+  instagram: "https://www.instagram.com/",
+  linkedin: "https://www.linkedin.com/in/hussen-taiwo-62a7541b3/",
+};
+
 const footerHTML = `
 <footer class="site-footer">
   <div class="container">
@@ -95,8 +100,8 @@ const footerHTML = `
     <div class="footer__bottom">
       <p>© <span data-year></span> StayNest. Designed and built by Handsome.</p>
       <ul class="footer__social" role="list">
-        <li><a href="#" aria-label="StayNest on Instagram">${icon("instagram")}</a></li>
-        <li><a href="#" aria-label="StayNest on LinkedIn">${icon("linkedin")}</a></li>
+        <li><a href="${SOCIAL.instagram}" target="_blank" rel="noopener noreferrer" aria-label="StayNest on Instagram">${icon("instagram")}</a></li>
+        <li><a href="${SOCIAL.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="StayNest on LinkedIn">${icon("linkedin")}</a></li>
       </ul>
     </div>
   </div>
