@@ -119,3 +119,82 @@ if (inEl && outEl) {
     if (outEl.value && outEl.value < outEl.min) outEl.value = "";
   });
 }
+
+/* Footer dispatch signup (saved in this browser until a mailing service is connected) */
+(() => {
+  const KEY = "sn-dispatch";
+  const read = () => {
+    try {
+      return JSON.parse(localStorage.getItem(KEY)) || [];
+    } catch {
+      return [];
+    }
+  };
+  const write = (v) => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(v));
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  let dialog = null;
+
+  function build() {
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `
+      <dialog class="modal" id="dispatch-dialog" aria-labelledby="dispatch-title">
+        <form class="dispatch-form" data-dispatch-form novalidate>
+          <h2 class="modal__title" id="dispatch-title">A considered dispatch</h2>
+          <p class="modal__text" data-dispatch-text>An occasional note on places worth knowing. No noise.</p>
+          <div class="field" data-dispatch-field>
+            <label class="field__label" for="dispatch-email">Email</label>
+            <input class="input" id="dispatch-email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="dispatch-err">
+            <p class="field__error" id="dispatch-err" role="alert"></p>
+          </div>
+          <div class="modal__actions">
+            <button class="btn btn--outline btn--sm" type="button" data-dispatch-close>Close</button>
+            <button class="btn btn--primary btn--sm" type="submit" data-dispatch-submit>Join the note</button>
+          </div>
+        </form>
+      </dialog>`,
+    );
+    dialog = document.getElementById("dispatch-dialog");
+    const form = dialog.querySelector("form");
+    const email = dialog.querySelector("#dispatch-email");
+    const err = dialog.querySelector("#dispatch-err");
+
+    dialog
+      .querySelector("[data-dispatch-close]")
+      .addEventListener("click", () => dialog.close());
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const value = email.value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+        err.textContent = "Enter a valid email address.";
+        email.focus();
+        return;
+      }
+      err.textContent = "";
+      const list = read();
+      if (!list.includes(value)) write([...list, value]);
+      dialog.querySelector("[data-dispatch-text]").textContent =
+        "Thank you, you're on the list. This is a demo, so nothing is actually sent.";
+      dialog.querySelector("[data-dispatch-field]").hidden = true;
+      dialog.querySelector("[data-dispatch-submit]").hidden = true;
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-dispatch]")) return;
+    if (!dialog) build();
+    dialog.querySelector("[data-dispatch-text]").textContent =
+      "An occasional note on places worth knowing. No noise.";
+    dialog.querySelector("[data-dispatch-field]").hidden = false;
+    dialog.querySelector("[data-dispatch-submit]").hidden = false;
+    dialog.querySelector("#dispatch-email").value = "";
+    dialog.querySelector("#dispatch-err").textContent = "";
+    dialog.showModal();
+  });
+})();

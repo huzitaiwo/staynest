@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trust &amp; safety — StayNest</title>
+    <meta
+      name="description"
+      content="How StayNest keeps bookings, reviews and accounts fair and safe."
+    />
+    <meta name="theme-color" content="#c85b3c" />
+
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-component="header" data-solid></div>
+
+    <main id="main" class="page">
+      <div class="container">
+        <header class="page-head">
+          <p class="eyebrow">Trust &amp; safety</p>
+          <h1 class="h1">Travel with confidence.</h1>
+          <p class="lead">
+            A good stay starts with clear information and fair rules for
+            everyone involved.
+          </p>
+        </header>
+
+        <ul class="principles" role="list">
+          <li class="principle reveal">
+            <h2 class="principle__title">Clear prices</h2>
+            <p>
+              The full cost, with nights, cleaning, service fee and taxes, is
+              shown before you pay. No surprises at checkout.
+            </p>
+          </li>
+          <li class="principle reveal">
+            <h2 class="principle__title">Honest reviews</h2>
+            <p>
+              Only guests who have finished a stay can review it, once per stay.
+              Hosts can reply publicly, and review their guests too.
+            </p>
+          </li>
+          <li class="principle reveal">
+            <h2 class="principle__title">Protected accounts</h2>
+            <p>
+              Sign-in is handled by Firebase Authentication. Roles are enforced
+              by database rules, so a guest can't open host or admin tools.
+            </p>
+          </li>
+          <li class="principle reveal">
+            <h2 class="principle__title">Fair moderation</h2>
+            <p>
+              Anyone can report a listing or a review. Reports go to an admin
+              console, where they can be resolved, dismissed or acted on.
+            </p>
+          </li>
+        </ul>
+
+        <section class="page-section" aria-labelledby="t-report">
+          <h2 class="h2" id="t-report">Seen something wrong?</h2>
+          <div class="prose">
+            <p>
+              Use the <strong>Report</strong> button on a stay page or next to a
+              review, choose a reason and send it. Reports are reviewed by the
+              StayNest team.
+            </p>
+            <p>
+              For questions about a booking, start with the
+              <a href="help.html">Help centre</a>, or write to the host from
+              your <a href="messages.html">Messages</a>.
+            </p>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="t-data">
+          <h2 class="h2" id="t-data">Your information</h2>
+          <div class="prose">
+            <p>
+              We ask only for what a booking needs: your name, email and a way
+              to pay. Card details are checked in your browser and are never
+              stored.
+            </p>
+            <p>
+              StayNest is a portfolio project, so payments are simulated and
+              bookings, saved stays and messages stay in your own browser.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div data-component="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+  </body>
+</html>
