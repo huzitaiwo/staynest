@@ -52,7 +52,7 @@
   // date → guest first name, for every night of every live reservation
   function bookedMap() {
     const map = {};
-    B.read()
+    B.forHost()
       .filter((b) => b.id === id && B.phase(b) !== "cancelled")
       .forEach((b) => {
         for (let day = b.checkin; day < b.checkout; day = addDays(day, 1)) {

@@ -38,6 +38,10 @@ $("[data-notice]").textContent = fb
   : "Demo mode: Firebase isn't configured, so the Users tab is empty. Everything else shows data saved in this browser.";
 
 const propertyOf = (id) => SN.allProperties.find((p) => p.id === id);
+const setListing = async (id, status) =>
+  L.isSample(id) || L.get(id)
+    ? L.setStatus(id, status)
+    : SN.cloudShared?.setListingStatus(id, status);
 const panel = $("[data-panel]");
 const live = $("[data-live]");
 const tabsEl = $("[data-tabs]");
@@ -68,8 +72,8 @@ const TABS = [
   ["overview", "Overview", () => ""],
   ["users", "Users", () => (usersState === "ready" ? users.length : "")],
   ["listings", "Listings", () => L.hosted().length],
-  ["reservations", "Reservations", () => B.read().length],
-  ["reviews", "Reviews", () => R.read().length],
+  ["reservations", "Reservations", () => B.forHost().length],
+  ["reviews", "Reviews", () => R.all().length],
   ["reports", "Reports", () => RP.openCount()],
 ];
 let active = TABS.some(([k]) => k === location.hash.slice(1))
@@ -109,7 +113,7 @@ function confirmAction(title, text, label) {
 
 /* ---------- panels ---------- */
 function overview() {
-  const all = B.read().filter((b) => propertyOf(b.id));
+  const all = B.forHost().filter((b) => propertyOf(b.id));
   const live_ = all.filter((b) => B.phase(b) !== "cancelled");
   let gmv = 0,
     fees = 0;
@@ -122,7 +126,7 @@ function overview() {
     byCity[p.city] = (byCity[p.city] || 0) + q.total;
   });
   const items = L.hosted();
-  const reviews = R.read().filter((r) => r.by === "guest");
+  const reviews = R.all().filter((r) => r.by === "guest");
   const avg = reviews.length
     ? (reviews.reduce((s, r) => s + r.overall, 0) / reviews.length).toFixed(2)
     : "—";
@@ -236,9 +240,27 @@ function listingsPanel() {
         ${i.sample ? "" : btn("delete-listing", i.id, "Delete")}
       </div></td></tr>`;
   });
+
+  let remote = [];
+  try {
+    remote = JSON.parse(localStorage.getItem("sn-remote-listings")) || [];
+  } catch {
+    /* ignore */
+  }
+  const remoteRows = remote.map(
+    (l) => `<tr>
+    <th scope="row"><span class="cell-clip">${esc(l.title || "Untitled listing")}</span></th>
+    <td>${esc([l.city, l.country].filter(Boolean).join(", ") || "—")}</td>
+    <td>${l.price ? fmt(l.price) : "—"}</td>
+    <td><span class="status status--upcoming">published</span></td>
+    <td><div class="cell-actions">
+      <a class="btn btn--outline btn--sm" href="property.html?id=${esc(l.id)}">View</a>
+      ${btn("unpublish", l.id, "Unpublish")}
+    </div></td></tr>`,
+  );
   return table(
     ["Listing", "Location", "Per night", "Status", "Actions"],
-    rows,
+    [...rows, ...remoteRows],
     "No listings",
   );
 }
@@ -250,7 +272,7 @@ function reservationsPanel() {
     past: "Completed",
     cancelled: "Cancelled",
   };
-  const rows = B.read()
+  const rows = B.forHost()
     .filter((b) => propertyOf(b.id))
     .map((b) => {
       const p = propertyOf(b.id);
@@ -273,7 +295,7 @@ function reservationsPanel() {
 }
 
 function reviewsPanel() {
-  const rows = R.read().map((r) => {
+  const rows = R.all().map((r) => {
     const p = propertyOf(r.propertyId);
     return `<tr>
       <th scope="row"><span class="cell-clip">${esc(p ? p.title : "—")}</span></th>
@@ -292,7 +314,7 @@ function reviewsPanel() {
 }
 
 function reportsPanel() {
-  const all = RP.read();
+  const all = RP.all();
   const list = all.filter((r) =>
     reportFilter === "open" ? r.status === "open" : r.status !== "open",
   );
@@ -302,7 +324,7 @@ function reportsPanel() {
   const cards = list
     .map((r) => {
       const review =
-        r.type === "review" ? R.read().find((x) => x.id === r.targetId) : null;
+        r.type === "review" ? R.all().find((x) => x.id === r.targetId) : null;
       const p = r.type === "listing" ? propertyOf(r.targetId) : null;
       return `<li class="rv-card">
       <div class="rv-card__head">
@@ -313,7 +335,7 @@ function reportsPanel() {
       ${r.details ? `<p class="row__sub">“${esc(r.details)}”</p>` : ""}
       <div class="cell-actions">
         ${r.type === "listing" && p ? `<a class="btn btn--outline btn--sm" href="property.html?id=${esc(p.id)}">View listing</a>` : ""}
-        ${r.type === "listing" && p && L.statusOf(p.id) === "published" ? btn("report-unpublish", r.id, "Unpublish listing", ` data-target="${esc(r.targetId)}"`) : ""}
+        ${r.type === "listing" && p && (p.remote || L.statusOf(p.id) === "published") ? btn("report-unpublish", r.id, "Unpublish listing", ` data-target="${esc(r.targetId)}"`) : ""}
         ${review ? btn("report-remove-review", r.id, "Remove review", ` data-target="${esc(r.targetId)}"`) : ""}
         ${r.status === "open" ? btn("report-resolve", r.id, "Mark resolved") + btn("report-dismiss", r.id, "Dismiss") : btn("report-reopen", r.id, "Reopen")}
       </div></li>`;
@@ -393,11 +415,11 @@ panel.addEventListener("click", async (e) => {
 
   switch (act) {
     case "publish":
-      L.setStatus(id, "published");
+      await setListing(id, "published");
       done("Listing published");
       break;
     case "unpublish":
-      L.setStatus(id, "unpublished");
+      await setListing(id, "unpublished");
       done("Listing unpublished");
       break;
     case "delete-listing":
@@ -452,7 +474,7 @@ panel.addEventListener("click", async (e) => {
       done("Report reopened");
       break;
     case "report-unpublish":
-      L.setStatus(target, "unpublished");
+      await setListing(target, "unpublished");
       RP.setStatus(id, "resolved");
       done("Listing unpublished and report resolved");
       break;

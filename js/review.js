@@ -20,7 +20,7 @@
   const q = new URLSearchParams(location.search);
   const ref = q.get("ref");
   const as = q.get("as") === "host" ? "host" : "guest";
-  const b = SN.bookings.read().find((x) => x.ref === ref);
+  const b = SN.bookings.forHost().find((x) => x.ref === ref);
   const p = b && SN.allProperties.find((x) => x.id === b.id);
 
   const MODES = {

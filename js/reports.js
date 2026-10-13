@@ -37,6 +37,43 @@
   };
 
   SN.reports = {
+    // Own reviews plus public guest reviews written by other accounts
+    all() {
+      const own = read();
+      const ids = new Set(own.map((r) => r.id));
+      let remote = [];
+      try {
+        remote = JSON.parse(localStorage.getItem("sn-remote-reviews")) || [];
+      } catch {
+        /* ignore */
+      }
+      return [...own, ...remote.filter((r) => !ids.has(r.id))];
+    },
+    forBooking: (ref, by) =>
+      SN.reviews.all().find((r) => r.ref === ref && r.by === by) || null,
+    forProperty: (id) =>
+      SN.reviews
+        .all()
+        .filter((r) => r.propertyId === id && r.by === "guest")
+        .sort((a, b) => b.date.localeCompare(a.date)),
+    byAuthor: (by) => SN.reviews.all().filter((r) => r.by === by),
+
+    reply(id, text) {
+      if (read().some((r) => r.id === id))
+        return write(
+          read().map((r) =>
+            r.id === id
+              ? { ...r, reply: { text, date: new Date().toISOString() } }
+              : r,
+          ),
+        );
+      return SN.reviews.remoteReply ? SN.reviews.remoteReply(id, text) : false;
+    },
+    remove(id) {
+      if (read().some((r) => r.id === id))
+        return write(read().filter((r) => r.id !== id));
+      return SN.reviews.remoteRemove ? SN.reviews.remoteRemove(id) : false;
+    },
     REASONS,
     read,
     add({ type, targetId, label, reason, details }) {
@@ -52,9 +89,6 @@
       };
       return write([r, ...read()]);
     },
-    setStatus: (id, status) =>
-      write(read().map((r) => (r.id === id ? { ...r, status } : r))),
-    openCount: () => read().filter((r) => r.status === "open").length,
   };
 
   /* Dialog (built once, only when a report button exists) */

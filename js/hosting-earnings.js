@@ -74,7 +74,7 @@
     let total = 0,
       totalNights = 0;
 
-    B.read()
+    B.forHost()
       .filter((b) => hostedIds.has(b.id) && B.phase(b) !== "cancelled")
       .filter((b) => listingId === "all" || b.id === listingId)
       .forEach((b) => {

@@ -6,3 +6,5 @@ export const firebaseConfig = {
   messagingSenderId: "597345016817",
   appId: "1:597345016817:web:b261ce7a5bc2f487fd0250",
 };
+
+export const SAMPLE_HOST_UID = "QxjLiIu1vmWG2256EMk09rKLREE2";

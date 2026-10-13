@@ -23,8 +23,28 @@
   SN.bookings = {
     read,
     add: (b) => write([b, ...read()]),
-    update: (ref, patch) =>
-      write(read().map((b) => (b.ref === ref ? { ...b, ...patch } : b))),
+    update(ref, patch) {
+      if (read().some((b) => b.ref === ref))
+        return write(
+          read().map((b) => (b.ref === ref ? { ...b, ...patch } : b)),
+        );
+      return SN.bookings.remotePatch
+        ? SN.bookings.remotePatch(ref, patch)
+        : false; // someone else's booking (host or admin action)
+    },
+
+    // The host's view: bookings made here plus bookings other guests made on this host's stays
+    forHost() {
+      const own = read();
+      const refs = new Set(own.map((b) => b.ref));
+      let remote = [];
+      try {
+        remote = JSON.parse(localStorage.getItem("sn-remote-bookings")) || [];
+      } catch {
+        /* ignore */
+      }
+      return [...own, ...remote.filter((b) => !refs.has(b.ref))];
+    },
 
     // upcoming | current | past | cancelled
     phase(b) {

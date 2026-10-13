@@ -1,15 +1,31 @@
-// js/availability.js — load after bookings.js and host-data.js
+// js/availability.js — dates are unavailable if blocked by the host, or already booked by anyone
 (() => {
   "use strict";
   const SN = window.StayNest;
+  const read = (k, fb) => {
+    try {
+      return JSON.parse(localStorage.getItem(k)) ?? fb;
+    } catch {
+      return fb;
+    }
+  };
 
   SN.availability = {
-    // true when any night in [checkin, checkout) is blocked by the host or already reserved
     conflict(id, checkin, checkout) {
       const { addDays } = SN.dates;
-      for (let d = checkin; d < checkout; d = addDays(d, 1)) {
-        if (SN.blocked.has(id, d)) return true;
-      }
+      const blocked = new Set([
+        ...(SN.blocked?.list(id) || []),
+        ...(read("sn-blocked-remote", {})[id] || []),
+      ]);
+      for (let d = checkin; d < checkout; d = addDays(d, 1))
+        if (blocked.has(d)) return true;
+
+      if (
+        (read("sn-busy", {})[id] || []).some(
+          ([from, to]) => from < checkout && to > checkin,
+        )
+      )
+        return true;
       return SN.bookings
         .read()
         .some(

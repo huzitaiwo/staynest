@@ -90,7 +90,8 @@
   }
 
   function visible() {
-    return B.read()
+    returnB
+      .forHost()
       .filter((b) => hostedIds.has(b.id) && propertyOf(b.id))
       .filter((b) => listingId === "all" || b.id === listingId)
       .filter((b) => filter === "all" || B.phase(b) === filter)
@@ -139,13 +140,13 @@
   list.addEventListener("click", (e) => {
     const ics = e.target.closest("[data-ics]");
     if (ics) {
-      const b = B.read().find((x) => x.ref === ics.dataset.ics);
+      const b = B.forHost().find((x) => x.ref === ics.dataset.ics);
       if (b) B.downloadICS(b, propertyOf(b.id));
       return;
     }
     const cancel = e.target.closest("[data-cancel]");
     if (cancel) {
-      const b = B.read().find((x) => x.ref === cancel.dataset.cancel);
+      const b = B.forHost().find((x) => x.ref === cancel.dataset.cancel);
       if (!b) return;
       pendingRef = b.ref;
       $("[data-cancel-text]").textContent =

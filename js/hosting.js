@@ -150,7 +150,7 @@
   function render() {
     const items = listingItems();
     const ids = new Set(items.map((i) => i.id));
-    const bookings = B.read().filter(
+    const bookings = B.forHost().filter(
       (b) => ids.has(b.id) && b.status !== "cancelled",
     );
     renderKpis(items, bookings);

@@ -37,7 +37,7 @@
     const sent = R.byAuthor("host")
       .filter((r) => hostedIds.has(r.propertyId))
       .sort((a, b) => b.date.localeCompare(a.date));
-    const awaiting = B.read()
+    const awaiting = B.forHost()
       .filter(
         (b) =>
           hostedIds.has(b.id) &&
@@ -116,7 +116,7 @@
 
     $("[data-sent]").innerHTML = sent
       .map((r) => {
-        const b = B.read().find((x) => x.ref === r.ref);
+        const b = B.forHost().find((x) => x.ref === r.ref);
         const p = propertyOf(r.propertyId);
         return `<li class="rv-card">
         <div class="rv-card__head">

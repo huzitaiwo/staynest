@@ -1,5 +1,6 @@
 import "./cloud.js";
 import "./cloud-listings.js";
+import "./cloud-shared.js";
 import {
   auth,
   db,
