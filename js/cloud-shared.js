@@ -225,23 +225,25 @@ if (isConfigured && auth && db && SN?.bookings) {
   }
 
   // A host replying to (or an admin removing) a review written by someone else
-  SN.reviews.remoteReply = (id, text) => {
-    const reply = { text, date: new Date().toISOString() };
-    setCache(
-      C.reviews,
-      read(C.reviews, []).map((r) => (r.id === id ? { ...r, reply } : r)),
-    );
-    enqueue(() => updateDoc(doc(db, "reviews", id), { reply }));
-    return true;
-  };
-  SN.reviews.remoteRemove = (id) => {
-    setCache(
-      C.reviews,
-      read(C.reviews, []).filter((r) => r.id !== id),
-    );
-    enqueue(() => deleteDoc(doc(db, "reviews", id)));
-    return true;
-  };
+  if (SN.reviews) {
+    SN.reviews.remoteReply = (id, text) => {
+      const reply = { text, date: new Date().toISOString() };
+      setCache(
+        C.reviews,
+        read(C.reviews, []).map((r) => (r.id === id ? { ...r, reply } : r)),
+      );
+      enqueue(() => updateDoc(doc(db, "reviews", id), { reply }));
+      return true;
+    };
+    SN.reviews.remoteRemove = (id) => {
+      setCache(
+        C.reviews,
+        read(C.reviews, []).filter((r) => r.id !== id),
+      );
+      enqueue(() => deleteDoc(doc(db, "reviews", id)));
+      return true;
+    };
+  }
 
   /* ---------- reports ---------- */
   const rpSig = {};
@@ -267,14 +269,17 @@ if (isConfigured && auth && db && SN?.bookings) {
       }
     });
   }
-  SN.reports.remoteStatus = (id, status) => {
-    setCache(
-      C.reports,
-      read(C.reports, []).map((r) => (r.id === id ? { ...r, status } : r)),
-    );
-    enqueue(() => updateDoc(doc(db, "reports", id), { status }));
-    return true;
-  };
+
+  if (SN.reports) {
+    SN.reports.remoteStatus = (id, status) => {
+      setCache(
+        C.reports,
+        read(C.reports, []).map((r) => (r.id === id ? { ...r, status } : r)),
+      );
+      enqueue(() => updateDoc(doc(db, "reports", id), { status }));
+      return true;
+    };
+  }
 
   /* ---------- admin: change another host's listing status ---------- */
   SN.cloudShared = {
