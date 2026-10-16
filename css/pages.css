@@ -211,3 +211,49 @@
     transition: none;
   }
 }
+
+/* 404 */
+.notfound {
+  padding-block: clamp(4rem, 12vw, 9rem);
+  text-align: center;
+}
+.notfound__inner {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+.notfound__code {
+  font-family: var(--font-display, "Playfair Display", serif);
+  font-size: clamp(5rem, 22vw, 11rem);
+  line-height: 1;
+  color: var(--terracotta, #c85b3c);
+  margin: 0;
+  animation: nf-float 5s ease-in-out infinite;
+}
+.notfound__title {
+  margin: 0.5rem 0 0.75rem;
+}
+.notfound__text {
+  color: var(--muted, #6b6259);
+  margin: 0 0 2rem;
+}
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+@keyframes nf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .notfound__code {
+    animation: none;
+  }
+}
