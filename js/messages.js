@@ -93,7 +93,7 @@
         const last = t.messages[t.messages.length - 1];
         return `<li><button class="convo" type="button" data-id="${esc(t.id)}" aria-current="${t.id === selected}">
         <span class="avatar avatar--sm" aria-hidden="true">${SN.host.initial}</span>
-        <span class="convo__text"><span class="convo__name">${SN.host.name}</span><span class="convo__prop">${p.title}</span><span class="convo__snip">${last ? esc(last.text) : "Start the conversation"}</span></span>
+        <span class="convo__text"><span class="convo__name">${SN.hostName(prop)}</span><span class="convo__prop">${p.title}</span><span class="convo__snip">${last ? esc(last.text) : "Start the conversation"}</span></span>
         <span class="convo__time">${last ? shortTime(last.at) : ""}</span>
       </button></li>`;
       })
@@ -105,7 +105,7 @@
     const p = t && propertyOf(t);
     if (!p) return;
     $("[data-t-avatar]").textContent = SN.host.initial;
-    $("[data-t-name]").textContent = SN.host.name;
+    $("[data-t-name]").textContent = SN.hostName(prop);
     $("[data-t-meta]").innerHTML =
       `About <a href="property.html?id=${p.id}">${p.title}</a> · Typically replies ${SN.host.responseTime}`;
 
@@ -116,7 +116,7 @@
               `<div class="msg msg--${m.from}">${esc(m.text)}<time datetime="${esc(m.at)}">${longTime(m.at)}</time></div>`,
           )
           .join("")
-      : `<p class="thread__empty">Say hello to ${SN.host.name}. Ask about the space, the area or your dates.</p>`;
+      : `<p class="thread__empty">Say hello to ${SN.hostName(prop)}. Ask about the space, the area or your dates.</p>`;
     logEl.scrollTop = logEl.scrollHeight;
 
     startersEl.hidden = t.messages.length > 0;

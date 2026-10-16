@@ -136,7 +136,7 @@
   /* Facts, highlights, about, amenities */
   set(
     "[data-facts-title]",
-    `Entire ${p.type.toLowerCase()} hosted by ${SN.host.name}`,
+    `Entire ${p.type.toLowerCase()} hosted by ${SN.hostName(p)}`,
   );
   $("[data-facts]").innerHTML = [
     plural(p.guests, "guest"),
@@ -224,7 +224,7 @@
         </header>
         <p class="review__text">${r.text}</p>
         ${r.id ? `<button class="link-btn" type="button" data-report data-type="review" data-id="${r.id}" data-label="${r.text.slice(0, 60)}">Report</button>` : ""}
-        ${r.reply ? `<div class="review__reply"><p class="review__reply-by">Reply from ${escR(SN.host.name)}</p><p>${escR(r.reply.text)}</p></div>` : ""}
+        ${r.reply ? `<div class="review__reply"><p class="review__reply-by">Reply from ${escR(SN.hostName(p))}</p><p>${escR(r.reply.text)}</p></div>` : ""}
       </article>`,
       )
       .join("");
