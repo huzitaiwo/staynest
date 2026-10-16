@@ -13,6 +13,14 @@ import {
 
 const SN = window.StayNest;
 
+const myName = () => {
+  try {
+    return (JSON.parse(localStorage.getItem("sn-profile")) || {}).name || "";
+  } catch {
+    return "";
+  }
+};
+
 if (isConfigured && auth && db && SN?.keys) {
   const LKEY = SN.keys.listings; // 'sn-listings' (this host's own listings)
   const RKEY = "sn-remote-listings"; // published listings from other hosts (cover photo only)
@@ -115,6 +123,7 @@ if (isConfigured && auth && db && SN?.keys) {
       cover: covers[l.id] || "",
       photoCount: photos.length,
       photoSig: sig,
+      hostName: myName(),
     });
     sigs[l.id] = sig;
     counts[l.id] = photos.length;
@@ -231,6 +240,7 @@ if (isConfigured && auth && db && SN?.keys) {
         photos: [r.cover],
         photoCount: r.photoCount || 1,
         updatedAt: r.updatedAt,
+        hostName: d.hostName || "",
       });
     });
     out.sort((a, b) => a.id.localeCompare(b.id));

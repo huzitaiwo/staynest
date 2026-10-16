@@ -348,6 +348,7 @@
         mine: false,
         remote: true,
         ownerId: l.ownerId,
+        hostName: l.hostName || "",
       }));
 
     SN.allProperties = [
@@ -363,4 +364,12 @@
   } catch {
     /* storage unavailable: keep the built-in stays */
   }
+
+  /* Host display name: own listing → profile name, remote → stored name,
+   built-in samples → the site owner. Never invent a name. */
+  SN.hostName = (p) => {
+    if (!p) return SN.host.name;
+    if (p.hostName) return p.hostName;
+    return p.remote || p.mine ? "Your host" : SN.host.name;
+  };
 })();
