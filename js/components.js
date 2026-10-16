@@ -162,6 +162,7 @@ const DASH_NAV = [
 const HOST_NAV = [
   { href: "hosting.html", label: "Overview" },
   { href: "hosting-reservations.html", label: "Reservations" },
+  { href: "hosting-messages.html", label: "Messages" },
   { href: "hosting-calendar.html", label: "Calendar" },
   { href: "hosting-earnings.html", label: "Earnings" },
   { href: "hosting-reviews.html", label: "Reviews" },

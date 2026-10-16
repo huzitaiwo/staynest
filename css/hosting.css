@@ -759,3 +759,10 @@
     transition: none;
   }
 }
+
+.convo__dot {
+  margin-left: 0.35rem;
+  font-size: 0.6rem;
+  color: var(--brand, #c85b3c);
+  vertical-align: middle;
+}

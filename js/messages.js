@@ -198,5 +198,17 @@
     input.focus();
   });
 
+  addEventListener("sn:messages-updated", () => {
+    threads = read();
+    if (draft && threads.some((t) => t.propertyId === draft.propertyId))
+      draft = null;
+    if (inbox.hidden) {
+      render();
+      return;
+    }
+    renderList();
+    renderThread();
+  });
+
   render();
 })();
